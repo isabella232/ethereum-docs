@@ -1,0 +1,27 @@
+<header class="ethdev-main-header">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ethdev-main-navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="page.home">ΞTH ÐΞV</a>
+            </div>
+            <div class="collapse navbar-collapse" id="ethdev-main-navbar">
+                <ul class="nav navbar-nav">
+                    <li><a ui-sref="page.docs.index">Documentation</a></li>
+                </ul>
+                <meteor-include src="_loginButtons" class="nav navbar-nav navbar-accounts-ui pull-right"></meteor-include>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container ethdev-main-container" ui-view></div>
+
+<footer class="ethdev-main-footer">
+    FOOTER
+</footer>
