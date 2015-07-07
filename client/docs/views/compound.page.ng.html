@@ -1,2 +1,28 @@
-<h1>{{compound.slug}}</h1>
-{{compound}}
+<h1>{{compound.body.name}} ({{compound.body.scope}} {{compound.body.kind}})</h1>
+
+<p>{{compound.body.description}}</p>
+
+<div ng-show="compound.body.params">
+    <h3>Params</h3>
+    <div class="row" ng-repeat="param in compound.body.params">
+        <div class="col-md-3">{{param.name}}</div>
+        <div class="col-md-3">{{param.type.names}}</div>
+        <div class="col-md-6">{{param.description}}</div>
+    </div>
+</div>
+
+<div ng-show="compound.body.returns">
+    <h3>Returns</h3>
+    <div class="row" ng-repeat="return in compound.body.returns">
+        <div class="col-md-3">{{return}}</div>
+        <div class="col-md-3"></div>
+        <div class="col-md-6"></div>
+    </div>
+</div>
+
+<div ng-show="compound.body.examples">
+    <h3>Examples</h3>
+    <div class="row" ng-repeat="example in compound.body.examples">
+        <code-block value="example" mode="'javascript'"></code-block>
+    </div>
+</div>
