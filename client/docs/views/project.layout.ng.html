@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="ethdev-docs-content">
+            <div ui-view></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="ethdev-docs-sidebar">
+            <div ng-repeat="(language, kinds) in groupedCompounds">
+                <h1>{{language}}</h1>
+                <div ng-repeat="(kind, items) in kinds">
+                    <h3>{{kind}}</h3>
+                    <ul>
+                        <li ng-repeat="item in items">
+                            <a ui-sref="page.docs.project.compound({version: selected.version, project: selected.project, compound: item.slug})">{{item.slug}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
