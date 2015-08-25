@@ -10,9 +10,9 @@ accounts-password
 accounts-base
 fourseven:scss
 reywood:bootstrap3-sass
-ian:accounts-ui-bootstrap-3
 angularui:angular-ui-bootstrap
 mongo-livedata
 monbro:mongodb-mapreduce-aggregation
 urigo:angular
 arch:ace-editor
+cwaring:modernizr

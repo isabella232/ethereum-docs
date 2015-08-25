@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-8">
+        <div style="height:1000px;border:1px solid #fff;">
+            List of projects under this particular version
+            <ul>
+                <li ng-repeat="project in projects">
+                    <a ui-sref="page.reference.project({version:selected.version, project:project.slug})" ng-click="selectProject(project.slug)">{{project}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div style="height:1000px;border:1px solid #fff;">
+            Sidebar
+        </div>
+    </div>
+</div>

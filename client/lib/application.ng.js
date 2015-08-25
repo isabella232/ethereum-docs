@@ -40,16 +40,6 @@ ethdev.configuration = (function () {
     angular
         .module(ethdev.configuration.applicationModuleName)
         .config(routerConfig);
-        //.run(stateInterceptor)
-
-    // Initialize the application
-    /*angular.element(document).ready(function() {
-        angular.bootstrap(document, [
-            ethdev.configuration.applicationModuleName
-        ], {
-            strictDi: true
-        });
-    });*/
 
     function routerConfig($locationProvider, $urlRouterProvider, $stateProvider) {
 
@@ -80,18 +70,16 @@ ethdev.configuration = (function () {
             url: '/',
             templateUrl: 'client/common/views/page.layout.ng.html',
             controller: 'PageController',
-            abstract: true
+            abstract: true,
+            resolve: {
+                state: function(StateService){
+                    return StateService.getState();
+                }
+            }
         });
-    }
 
-    /*function stateInterceptor($state, $rootScope) {
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-            $.each(toParams, function(index, value) {
-                Session.set(index, value);
-            });
-        });
-    }*/
+    }
 
 })();
 
-ethdev.configuration.registerModule('ethdev.docs');
+//ethdev.configuration.registerModule('ethdev.docs');

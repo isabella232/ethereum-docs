@@ -1,27 +1,8 @@
-<header class="ethdev-main-header">
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ethdev-main-navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" ui-sref="page.home">ΞTH ÐΞV</a>
-            </div>
-            <div class="collapse navbar-collapse" id="ethdev-main-navbar">
-                <ul class="nav navbar-nav">
-                    <li><a ui-sref="page.docs.index">Documentation</a></li>
-                </ul>
-                <meteor-include src="_loginButtons" class="nav navbar-nav navbar-accounts-ui pull-right"></meteor-include>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<div class="container ethdev-main-container" ui-view></div>
-
-<footer class="ethdev-main-footer">
-    FOOTER
-</footer>
+<div class="fullscreen animated" ng-style="{background:background}">
+    <div style="width:100%;height:30px;line-height:30px;background:#333;padding:0 30px;">
+        <a ui-sref="landing">Landing</a>
+        <a ui-sref="page.wikis.index">Wikis</a>
+        <a ui-sref="page.tutorials.index">Tutorials</a>
+    </div>
+    <div class="container-fluid" ui-view></div>
+</div>

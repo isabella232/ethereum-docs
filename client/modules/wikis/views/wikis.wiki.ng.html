@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-md-12">
+        Wiki summary
+        <ul>
+            <li ng-repeat="page in pages">
+                <a ui-sref="page.wikis.page({wiki:selected.wiki, page:page.slug})" ng-click="selectPage(page.slug)">{{page}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

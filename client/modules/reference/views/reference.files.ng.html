@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-8">
+        <div style="height:1000px;border:1px solid #fff;">
+            List of files in this project
+            <ul>
+                <li ng-repeat="file in compounds">
+                    <a ui-sref="page.reference.classes({version:selected.version, project:selected.project, file:file.slug})" ng-click="selectFile(file.slug)">{{file}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div style="height:1000px;border:1px solid #fff;">
+            Sidebar
+        </div>
+    </div>
+</div>
