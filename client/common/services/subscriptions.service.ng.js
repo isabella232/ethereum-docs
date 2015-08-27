@@ -5,7 +5,7 @@ angular
 /**
  * This factory is responsible for managing Meteor subscriptions
  * @param $meteor
- * @returns {{subscribe: Function, unsubscribe: Function}}
+ * @returns {{}}
  * @constructor
  */
 function SubscriptionsService($meteor) {
@@ -53,72 +53,37 @@ function SubscriptionsService($meteor) {
                 version,
                 project
             ]);
-            subscribe('docs:classes', [
+            subscribe('docs:compounds', [
                 version,
                 project
             ]);
-            subscribe('docs:files', [
-                version,
-                project
-            ]);
-            //console.log('Subscribed to project: ' + project + ' (version: ' + version + ')');
-            //console.log('Subscribed to all classes in project: ' + project + ' (version: ' + version + ')');
-            //console.log('Subscribed to all files in project: ' + project + ' (version: ' + version + ')');
         },
         unsubscribe: function(version, project){
             unsubscribe('docs:project', [
                 version,
                 project
             ]);
-            unsubscribe('docs:classes', [
+            unsubscribe('docs:compounds', [
                 version,
                 project
             ]);
-            unsubscribe('docs:files', [
-                version,
-                project
-            ]);
-            //console.log('Unsubscribed from project: ' + project + ' (version: ' + version + ')');
-            //console.log('Unsubscribed from all classes in project: ' + project + ' (version: ' + version + ')');
-            //console.log('Unsubscribed from all files in project: ' + project + ' (version: ' + version + ')');
         }
     };
 
-    var Class = {
-        subscribe: function(version, project, classname){
-            subscribe('docs:class', [
+    var Compound = {
+        subscribe: function(version, project, compound){
+            subscribe('docs:compound', [
                 version,
                 project,
-                classname
+                compound
             ]);
-            //console.log('Subscribed to class: ' + classname + ' (project: ' + project + ', version: ' + version + ')');
         },
-        unsubscribe: function(version, project, classname){
-            unsubscribe('docs:class', [
+        unsubscribe: function(version, project, compound){
+            unsubscribe('docs:compound', [
                 version,
                 project,
-                classname
+                compound
             ]);
-            //console.log('Unsubscribed from class: ' + classname + ' (project: ' + project + ', version: ' + version + ')');
-        }
-    };
-
-    var File = {
-        subscribe: function(version, project, filename){
-            subscribe('docs:file', [
-                version,
-                project,
-                filename
-            ]);
-            //console.log('Subscribed to file: ' + filename + ' (project: ' + project + ', version: ' + version + ')');
-        },
-        unsubscribe: function(version, project, filename){
-            unsubscribe('docs:file', [
-                version,
-                project,
-                filename
-            ]);
-            //console.log('Unsubscribed from file: ' + filename + ' (project: ' + project + ', version: ' + version + ')');
         }
     };
 
@@ -177,8 +142,7 @@ function SubscriptionsService($meteor) {
         versions: Versions,
         version: Version,
         project: Project,
-        class: Class,
-        file: File,
+        compound: Compound,
         wikis: Wikis,
         wiki: Wiki,
         page: Page

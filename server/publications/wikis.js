@@ -11,7 +11,7 @@ Meteor.publish('docs:wikis', function(){
         }
     };
 
-    // TODO: find all expect for Tutorials
+    // TODO: find all except for Tutorials
     return DocsWikis.find(query, options);
 
 });

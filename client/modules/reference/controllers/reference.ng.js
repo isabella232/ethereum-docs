@@ -2,24 +2,37 @@ angular
     .module('ethdev')
     .controller('ReferenceController', ReferenceController);
 
-function ReferenceController($meteor, $scope, StateService, state) {
-
-    // Set current selection based on state params
-    StateService.setSelected(state);
+function ReferenceController($meteor, $scope, ReferenceStateService, $state) {
 
     $scope.versions = $meteor.collection(DocsVersions);
     $scope.projects = $meteor.collection(DocsProjects);
     $scope.compounds = $meteor.collection(DocsCompounds);
 
-    $scope.selectVersion = StateService.selectVersion;
-    $scope.selectProject = StateService.selectProject;
-    $scope.selectType = StateService.selectType;
-    $scope.selectClass = StateService.selectClass;
-    $scope.selectFile = StateService.selectFile;
+    $scope.selection = ReferenceStateService.getSelection();
 
-    $scope.$on('selection:updated', function() {
-        console.log($scope.selected);
-        $scope.selected = StateService.getSelected();
+    $scope.$on('state:updated', function() {
+        $scope.selection = ReferenceStateService.getSelection();
     });
+
+    $scope.setVersion = function(){
+        $state.go('page.reference.version', {
+            version: $scope.selection.version
+        })
+    };
+
+    $scope.setProject = function(){
+        $state.go('page.reference.project.index', {
+            version: $scope.selection.version,
+            project: $scope.selection.project
+        })
+    };
+
+    $scope.setCompound = function(){
+        $state.go('page.reference.project.compound', {
+            version: $scope.selection.version,
+            project: $scope.selection.project,
+            compound: $scope.selection.compound
+        })
+    };
 
 }

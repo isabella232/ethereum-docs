@@ -2,12 +2,12 @@ angular
     .module('ethdev')
     .controller('WikisController', WikisController);
 
-function WikisController($meteor, $scope, StateService, state) {
+function WikisController($meteor, $scope) {
 
     // Set current selection based on state params
-    StateService.setSelected(state);
+    //StateService.setSelected(state);
 
-    $scope.wikis = $meteor.collection(DocsWikis);
+    /*$scope.wikis = $meteor.collection(DocsWikis);
     $scope.pages = $meteor.collection(DocsPages);
 
     $scope.selectWiki = StateService.selectWiki;
@@ -15,6 +15,6 @@ function WikisController($meteor, $scope, StateService, state) {
 
     $scope.$on('selection:updated', function() {
         $scope.selected = StateService.getSelected();
-    });
+    });*/
 
 }

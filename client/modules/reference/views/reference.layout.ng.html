@@ -5,36 +5,22 @@
     <div class="col-md-12 er-page-breadcrumbs">
         <div class="btn-group btn-breadcrumb">
             <a class="btn btn-default">
-                <select ng-model="selected.version" ng-change="selectVersion(selected.version)">
+                <select ng-model="selection.version" ng-change="setVersion()">
                     <option ng-repeat="version in versions">{{version.slug}}</option>
                 </select>
             </a>
             <a class="btn btn-default">
-                <select ng-model="selected.project" ng-change="selectProject(selected.project)" ng-disabled="!selected.version">
+                <select ng-model="selection.project" ng-change="setProject()" ng-disabled="!selection.version">
                     <option ng-repeat="project in projects">{{project.slug}}</option>
                 </select>
             </a>
             <a class="btn btn-default">
-                <select ng-model="selected.type" ng-change="selectType(selected.type)" ng-disabled="!selected.project">
-                    <option>classes</option>
-                    <option>files</option>
+                <select ng-model="selection.compound" ng-change="setCompound()" ng-disabled="!selection.project">
+                    <option ng-repeat="compound in compounds">{{compound.slug}}</option>
                 </select>
             </a>
-            <a class="btn btn-default">
-                <select ng-model="selected.compound" ng-change="selectCompound(selected.compound)" ng-disabled="!selected.type">
-                    <option>web3_clientVersion</option>
-                    <option>web3_sha3</option>
-                    <option>net_version</option>
-                </select>
-            </a>
-        </div>
-        <div>
-            <a ui-sref="page.reference.index">reference index</a>
-            <a ui-sref="page.reference.version({version:'develop'})">develop version</a>
-            <a ui-sref="page.reference.classes({version:'develop', project:'libweb3jsonrpc'})">libweb3jsonrpc classes</a>
-            <a ui-sref="page.reference.class({version:'develop', project:'libweb3jsonrpc', class:'foobar'})">foobar class</a>
         </div>
     </div>
 </div>
 
-<div ui-view></div>
+<div ui-view=""></div>

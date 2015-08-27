@@ -3,11 +3,13 @@ angular
     .controller('PageController', PageController);
 
 
-function PageController($scope, state) {
+function PageController($scope) {
 
-    //console.log(state);
+    $scope.background = '#4c5053';
 
-    // Page background (specified in route definition)
-    $scope.background = state.$current.parent.self.background;
+    // scope for tiles (list of versions etc) - controllers
+    // proper state service for reference
+    // ace editor fixes
+    // choose right directive for each element in compound body (params, returns, examples, ...)
 
 }

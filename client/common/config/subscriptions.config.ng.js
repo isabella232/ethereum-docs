@@ -9,11 +9,11 @@ function runState($rootScope, SubscriptionsService) {
         var unsubscribe = [];
         var subscribe = [];
 
-        conditionalUnsubscribe(fromState, toState, 'versions', function(state){
+        conditionalSubscription(fromState, toState, 'versions', function(state){
             return state.name.substring(0, 14) == "page.reference";
         });
 
-        conditionalUnsubscribe(fromState, toState, 'wikis', function(state){
+        conditionalSubscription(fromState, toState, 'wikis', function(state){
             return state.name.substring(0, 10) == "page.wikis";
         });
 
@@ -72,12 +72,8 @@ function runState($rootScope, SubscriptionsService) {
                     SubscriptionsService.project.unsubscribe(fromParams.version, fromParams.project);
                     break;
 
-                case 'class':
-                    SubscriptionsService.class.unsubscribe(fromParams.version, fromParams.project, fromParams.class);
-                    break;
-
-                case 'file':
-                    SubscriptionsService.file.unsubscribe(fromParams.version, fromParams.project, fromParams.file);
+                case 'compound':
+                    SubscriptionsService.compound.unsubscribe(fromParams.version, fromParams.project);
                     break;
 
                 case 'wikis':
@@ -112,12 +108,8 @@ function runState($rootScope, SubscriptionsService) {
                     SubscriptionsService.project.subscribe(toParams.version, toParams.project);
                     break;
 
-                case 'class':
-                    SubscriptionsService.class.subscribe(toParams.version, toParams.project, toParams.class);
-                    break;
-
-                case 'file':
-                    SubscriptionsService.file.subscribe(toParams.version, toParams.project, toParams.file);
+                case 'compound':
+                    SubscriptionsService.compound.subscribe(toParams.version, toParams.project, toParams.compound);
                     break;
 
                 case 'wikis':
@@ -136,7 +128,7 @@ function runState($rootScope, SubscriptionsService) {
 
         });
 
-        function conditionalUnsubscribe(fromState, toState, key, condition){
+        function conditionalSubscription(fromState, toState, key, condition){
 
             if (!condition(fromState) && condition(toState)) {
 
@@ -153,6 +145,12 @@ function runState($rootScope, SubscriptionsService) {
             }
 
         }
+
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+
+        $rootScope.$broadcast("state:updated");
 
     });
 

@@ -1,17 +1,11 @@
 <div class="row">
-    <div class="col-md-8">
-        <div style="height:1000px;border:1px solid #fff;">
-            List of all available versions
-            <ul>
-                <li ng-repeat="version in versions">
-                    <a ui-sref="page.reference.version({version:version.slug})" ng-click="selectVersion(version.slug)">{{version}}</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div style="height:1000px;border:1px solid #fff;">
-            Sidebar
-        </div>
+    <div class="col-md-12">
+        <h2>Available versions</h2>
+        <div style="border:1px dashed #ccc;padding:30px;margin-bottom:30px;">{{versions}}</div>
+        <ul>
+            <li ng-repeat="version in versions">
+                <a ui-sref="page.reference.version({version:version.slug})">{{version.slug}}</a>
+            </li>
+        </ul>
     </div>
 </div>

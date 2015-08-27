@@ -1,8 +1,11 @@
 <div class="fullscreen animated" ng-style="{background:background}">
     <div style="width:100%;height:30px;line-height:30px;background:#333;padding:0 30px;">
         <a ui-sref="landing">Landing</a>
+        <a ui-sref="page.reference.index">Reference</a>
+        <a ui-sref="page.reference.version({version:'develop'})">version</a>
+        <a ui-sref="page.reference.project.index({version:'develop',project:'libweb3jsonrpc'})">project</a>
+        <a ui-sref="page.reference.project.compound({version:'develop',project:'libweb3jsonrpc',compound:'net_version'})">compound</a>
         <a ui-sref="page.wikis.index">Wikis</a>
-        <a ui-sref="page.tutorials.index">Tutorials</a>
     </div>
-    <div class="container-fluid" ui-view></div>
+    <div class="container-fluid" ui-view=""></div>
 </div>

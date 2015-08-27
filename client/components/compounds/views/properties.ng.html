@@ -1,0 +1,12 @@
+<h3>Properties</h3>
+<table class="table table-bordered">
+    <tr ng-repeat="property in properties">
+        <td>{{property.name}}</td>
+        <td>
+            <span ng-repeat="typeName in property.type.names">
+                {{typeName}}
+            </span>
+        </td>
+        <td>{{property.description}}</td>
+    </tr>
+</table>

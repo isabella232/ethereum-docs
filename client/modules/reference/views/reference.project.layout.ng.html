@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-md-8">
+        <div ui-view=""></div>
+    </div>
+    <div class="col-md-4">
+        <ul>
+            <li ng-repeat="compound in compounds">
+                <a ui-sref="page.reference.project.compound({version:selection.version,project:selection.project,compound:compound.slug})">{{compound.slug}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

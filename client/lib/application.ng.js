@@ -12,6 +12,7 @@ ethdev.configuration = (function () {
 
     // Add a new vertical module
     var registerModule = function (moduleName, dependencies) {
+
         // Create angular module
         angular.module(moduleName, dependencies || []);
 
@@ -19,6 +20,7 @@ ethdev.configuration = (function () {
         angular.module(applicationModuleName).requires.push(moduleName);
 
         return angular.module(moduleName);
+
     };
 
     return {
@@ -26,6 +28,7 @@ ethdev.configuration = (function () {
         applicationModuleVendorDependencies: applicationModuleVendorDependencies,
         registerModule: registerModule
     };
+
 })();
 
 (function(){
@@ -41,7 +44,7 @@ ethdev.configuration = (function () {
         .module(ethdev.configuration.applicationModuleName)
         .config(routerConfig);
 
-    function routerConfig($locationProvider, $urlRouterProvider, $stateProvider) {
+    function routerConfig($locationProvider, $urlRouterProvider) {
 
         // Setting HTML5 Location Mode
         $locationProvider.html5Mode(true);
@@ -65,21 +68,6 @@ ethdev.configuration = (function () {
             }
         });
 
-        // Wrapper for all pages
-        $stateProvider.state('page', {
-            url: '/',
-            templateUrl: 'client/common/views/page.layout.ng.html',
-            controller: 'PageController',
-            abstract: true,
-            resolve: {
-                state: function(StateService){
-                    return StateService.getState();
-                }
-            }
-        });
-
     }
 
 })();
-
-//ethdev.configuration.registerModule('ethdev.docs');
