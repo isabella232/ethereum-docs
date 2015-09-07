@@ -241,14 +241,28 @@ function compound($compile, $templateCache) {
 
         var $sections = $('<div></div>');
 
-        // TODO: sort compounds appropriately
-        var sortedCompounds = scope.body;
+        var sortedCompounds = sortCompounds(scope.body, [
+            'name',
+            'description',
+            "properties",
+            "params",
+            'returns',
+            'examples'
+        ]);
 
         _.forEach(sortedCompounds, function(value, key){
 
             var $section = $('<section class="compound"></section>');
 
             switch(key) {
+
+                case 'name':
+                    scope.name = value;
+                    $section.addClass('compound-name');
+                    $section.append($compile(
+                        $templateCache.get('client/components/compounds/views/name.ng.html')
+                    )(scope));
+                    break;
 
                 case 'properties':
                     scope.properties = value;
@@ -259,11 +273,13 @@ function compound($compile, $templateCache) {
                     break;
 
                 case 'params':
-                    scope.params = value;
-                    $section.addClass('compound-params');
-                    $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/params.ng.html')
-                    )(scope));
+                    if (value.length){
+                        scope.params = value;
+                        $section.addClass('compound-params');
+                        $section.append($compile(
+                            $templateCache.get('client/components/compounds/views/params.ng.html')
+                        )(scope));
+                    }
                     break;
 
                 case 'returns':
@@ -292,7 +308,6 @@ function compound($compile, $templateCache) {
                     break;
 
                 case 'id':
-                case 'name':
                 case 'longname':
                 case 'kind':
                 case 'scope':
