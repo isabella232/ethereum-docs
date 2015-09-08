@@ -2,10 +2,11 @@ angular
     .module('ethdev')
     .directive('compound', compound);
 
-function compound($compile, $templateCache) {
+function compound($compile, $templateCache, $state) {
 
     return {
         restrict: 'E',
+        controller: 'CompoundController',
         scope: {
             parser: '=',
             body: "="
@@ -29,15 +30,38 @@ function compound($compile, $templateCache) {
             }
 
         }
-
     };
 
-    function createDoxygenPage(scope) {
+    function createDoxygenCompounds(scope) {
+
+        switch (scope.body.kind) {
+
+            case 'page':
+                return createDoxygenPage(scope);
+
+            case 'file':
+                return createDoxygenFile(scope);
+
+            case 'class':
+                return createDoxygenClass(scope);
+
+            case 'dir':
+                return createDoxygenDir(scope);
+
+        }
+
+    }
+
+    function createDoxygenClass(scope) {
 
         var $sections = $('<div></div>');
 
-        // TODO: sort compounds appropriately
-        var sortedCompounds = scope.body;
+        var sortedCompounds = sortCompounds(scope.body, [
+            'name',
+            "kind",
+            "prot",
+            'briefdescription'
+        ]);
 
         _.forEach(sortedCompounds, function(value, key){
 
@@ -49,8 +73,20 @@ function compound($compile, $templateCache) {
                     scope.name = value;
                     $section.addClass('compound-name');
                     $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/name.ng.html')
+                        $templateCache.get('client/components/compounds/views/heading.ng.html')
                     )(scope));
+                    break;
+
+                case 'briefdescription':
+                    scope.description = value;
+                    $section.addClass('compound-summary');
+                    $section.append($compile(
+                        $templateCache.get('client/components/compounds/views/description.ng.html')
+                    )(scope));
+                    break;
+
+                case 'kind':
+                    // Do nothing
                     break;
 
                 default:
@@ -84,7 +120,7 @@ function compound($compile, $templateCache) {
                     scope.name = value;
                     $section.addClass('compound-name');
                     $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/name.ng.html')
+                        $templateCache.get('client/components/compounds/views/heading.ng.html')
                     )(scope));
                     break;
 
@@ -102,37 +138,12 @@ function compound($compile, $templateCache) {
 
     }
 
-    // TODO: review efficiency
-    function sortCompounds(compounds, order){
-
-        var keys = Object.keys(compounds);
-        var i, len = keys.length;
-        var sortedCompounds = {};
-
-        keys.sort(function(a,b){
-            var indexA = $.inArray(a, order);
-            var indexB = $.inArray(b, order);
-            return (indexA < indexB) ? -1 : (indexA > indexB) ? 1 : 0;
-        });
-
-        for (i = 0; i < len; i++){
-            sortedCompounds[keys[i]] = compounds[keys[i]];
-        }
-
-        return sortedCompounds;
-
-    }
-
-    function createDoxygenClass(scope) {
+    function createDoxygenPage(scope) {
 
         var $sections = $('<div></div>');
 
-        var sortedCompounds = sortCompounds(scope.body, [
-            'name',
-            "kind",
-            "prot",
-            'briefdescription'
-        ]);
+        // TODO: sort compounds appropriately
+        var sortedCompounds = scope.body;
 
         _.forEach(sortedCompounds, function(value, key){
 
@@ -144,20 +155,8 @@ function compound($compile, $templateCache) {
                     scope.name = value;
                     $section.addClass('compound-name');
                     $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/name.ng.html')
+                        $templateCache.get('client/components/compounds/views/heading.ng.html')
                     )(scope));
-                    break;
-
-                case 'briefdescription':
-                    scope.summary = value;
-                    $section.addClass('compound-summary');
-                    $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/summary.ng.html')
-                    )(scope));
-                    break;
-
-                case 'kind':
-                    // Do nothing
                     break;
 
                 default:
@@ -191,7 +190,7 @@ function compound($compile, $templateCache) {
                     scope.name = value;
                     $section.addClass('compound-name');
                     $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/name.ng.html')
+                        $templateCache.get('client/components/compounds/views/heading.ng.html')
                     )(scope));
                     break;
 
@@ -206,26 +205,6 @@ function compound($compile, $templateCache) {
         });
 
         return $sections;
-
-    }
-
-    function createDoxygenCompounds(scope) {
-
-        switch (scope.body.kind) {
-
-            case 'page':
-                return createDoxygenPage(scope);
-
-            case 'file':
-                return createDoxygenFile(scope);
-
-            case 'class':
-                return createDoxygenClass(scope);
-
-            case 'dir':
-                return createDoxygenDir(scope);
-
-        }
 
     }
 
@@ -260,7 +239,7 @@ function compound($compile, $templateCache) {
                     scope.name = value;
                     $section.addClass('compound-name');
                     $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/name.ng.html')
+                        $templateCache.get('client/components/compounds/views/heading.ng.html')
                     )(scope));
                     break;
 
@@ -300,10 +279,10 @@ function compound($compile, $templateCache) {
 
                 // TODO: process internal links
                 case 'description':
-                    scope.description = value;
+                    scope.text = value;
                     $section.addClass('compound-description');
                     $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/description.ng.html')
+                        $templateCache.get('client/components/compounds/views/text.ng.html')
                     )(scope));
                     break;
 
@@ -327,6 +306,27 @@ function compound($compile, $templateCache) {
         });
 
         return $sections;
+
+    }
+
+    // TODO: review efficiency
+    function sortCompounds(compounds, order){
+
+        var keys = Object.keys(compounds);
+        var i, len = keys.length;
+        var sortedCompounds = {};
+
+        keys.sort(function(a,b){
+            var indexA = $.inArray(a, order);
+            var indexB = $.inArray(b, order);
+            return (indexA < indexB) ? -1 : (indexA > indexB) ? 1 : 0;
+        });
+
+        for (i = 0; i < len; i++){
+            sortedCompounds[keys[i]] = compounds[keys[i]];
+        }
+
+        return sortedCompounds;
 
     }
 
