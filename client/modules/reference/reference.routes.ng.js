@@ -58,31 +58,42 @@ function referenceRoutes($stateProvider) {
 
 
 
-
-/*
-    // File reference for the selected project
-    $stateProvider.state('page.reference.files', {
-        url: ':version/:project/files/',
-        templateUrl: 'client/modules/reference/views/reference.files.ng.html'
+    $stateProvider.state('page.wikis', {
+        url: 'wikis/',
+        controller: 'WikisController',
+        templateUrl: 'client/modules/reference/views/wikis.layout.ng.html',
+        background: '#4c5053',
+        tileTemplateUrl: 'client/modules/reference/views/reference.tile.ng.html',
+        abstract: true,
+        resolve: {
+            selection: function($stateParams){
+                return $stateParams;
+            }
+        }
     });
 
-    // File listing
-    $stateProvider.state('page.reference.file', {
-        url: ':version/:project/files/:file/',
-        templateUrl: 'client/modules/reference/views/reference.file.ng.html'
+    $stateProvider.state('page.wikis.index', {
+        url: '',
+        controller: 'WikisIndexController',
+        templateUrl: 'client/modules/reference/views/wikis.index.ng.html'
     });
 
-    // Class reference for the selected project
-    $stateProvider.state('page.reference.classes', {
-        url: ':version/:project/classes/',
-        templateUrl: 'client/modules/reference/views/reference.classes.ng.html'
+    $stateProvider.state('page.wikis.wiki', {
+        url: ":wiki/",
+        controller: 'WikisWikiController',
+        templateUrl: 'client/modules/reference/views/wikis.wiki.layout.ng.html',
+        abstract: true
     });
 
-    // Class description
-    $stateProvider.state('page.reference.class', {
-        url: ':version/:project/classes/:class/',
-        templateUrl: 'client/modules/reference/views/reference.class.ng.html'
+    $stateProvider.state('page.wikis.wiki.index', {
+        url: "",
+        templateUrl: 'client/modules/reference/views/wikis.wiki.index.ng.html'
     });
-*/
+
+    $stateProvider.state('page.wikis.wiki.page', {
+        url: ":page/",
+        controller: 'WikisPageController',
+        templateUrl: 'client/modules/reference/views/wikis.wiki.page.ng.html'
+    });
 
 }

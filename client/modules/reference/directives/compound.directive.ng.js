@@ -78,6 +78,7 @@ function compound($compile, $templateCache, $state) {
                     break;
 
                 case 'briefdescription':
+                    console.log(value)
                     scope.description = value;
                     $section.addClass('compound-summary');
                     $section.append($compile(

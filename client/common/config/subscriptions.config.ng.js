@@ -73,7 +73,7 @@ function runState($rootScope, SubscriptionsService) {
                     break;
 
                 case 'compound':
-                    SubscriptionsService.compound.unsubscribe(fromParams.version, fromParams.project);
+                    SubscriptionsService.compound.unsubscribe(fromParams.version, fromParams.project, fromParams.compound);
                     break;
 
                 case 'wikis':
@@ -85,7 +85,7 @@ function runState($rootScope, SubscriptionsService) {
                     break;
 
                 case 'page':
-                    SubscriptionsService.page.unsubscribe(fromParams.wiki, fromParams.page);
+                    SubscriptionsService.compound.unsubscribe('develop', fromParams.wiki, fromParams.page);
                     break;
 
             }
@@ -121,7 +121,7 @@ function runState($rootScope, SubscriptionsService) {
                     break;
 
                 case 'page':
-                    SubscriptionsService.page.subscribe(toParams.wiki, toParams.page);
+                    SubscriptionsService.compound.subscribe('develop', toParams.wiki, toParams.page);
                     break;
 
             }

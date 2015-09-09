@@ -89,11 +89,15 @@ function SubscriptionsService($meteor) {
 
     var Wikis = {
         subscribe: function(){
-            subscribe('docs:wikis');
+            subscribe('docs:wikis', [
+                'develop'
+            ]);
             //console.log('Subscribed to all wikis');
         },
         unsubscribe: function(){
-            unsubscribe('docs:wikis');
+            unsubscribe('docs:wikis', [
+                'develop'
+            ]);
             //console.log('Unsubscribed from all wikis');
         }
     };
@@ -103,7 +107,8 @@ function SubscriptionsService($meteor) {
             subscribe('docs:wiki', [
                 wiki
             ]);
-            subscribe('docs:pages', [
+            subscribe('docs:compounds', [
+                'develop',
                 wiki
             ]);
             //console.log('Subscribed to wiki: ' + wiki);
@@ -113,28 +118,12 @@ function SubscriptionsService($meteor) {
             unsubscribe('docs:wiki', [
                 wiki
             ]);
-            unsubscribe('docs:pages', [
+            unsubscribe('docs:compounds', [
+                'develop',
                 wiki
             ]);
             //console.log('Unsubscribed from wiki: ' + wiki);
             //console.log('Unsubscribed from all pages in wiki: ' + wiki);
-        }
-    };
-
-    var Page = {
-        subscribe: function(wiki, page){
-            subscribe('docs:page', [
-                wiki,
-                page
-            ]);
-            //console.log('Subscribed to page: ' + page + ' (wiki: ' + wiki + ')');
-        },
-        unsubscribe: function(wiki, page){
-            unsubscribe('docs:page', [
-                wiki,
-                page
-            ]);
-            //console.log('Unsubscribed from page: ' + page + ' (wiki: ' + wiki + ')');
         }
     };
 
@@ -144,8 +133,7 @@ function SubscriptionsService($meteor) {
         project: Project,
         compound: Compound,
         wikis: Wikis,
-        wiki: Wiki,
-        page: Page
+        wiki: Wiki
     };
 
     function subscribe(key, args){

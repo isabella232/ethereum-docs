@@ -1,30 +1,36 @@
 /**
- *
+ * Summaries of all wikis
  */
-Meteor.publish('docs:wikis', function(){
+Meteor.publish('docs:wikis', function(version){
 
-    var query = {};
+    var query = {
+        '_version': version,
+        'type': 'wiki'
+    };
 
     var options = {
         fields: {
-            'slug': 1
+            _version: 1,
+            slug: 1,
+            summary: 1
         }
     };
 
-    // TODO: find all except for Tutorials
-    return DocsWikis.find(query, options);
+    return DocsProjects.find(query, options);
 
 });
 
 /**
- *
+ * Complete information about the particular wiki
  */
-Meteor.publish('docs:wiki', function(wiki){
+Meteor.publish('docs:wiki', function(project){
 
     var query = {
-        slug: wiki
+        '_version': 'develop',
+        'type': 'wiki',
+        slug: project
     };
 
-    return DocsWikis.find(query);
+    return DocsProjects.find(query);
 
 });

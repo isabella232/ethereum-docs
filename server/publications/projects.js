@@ -4,7 +4,8 @@
 Meteor.publish('docs:projects', function(version){
 
     var query = {
-        '_version': version
+        '_version': version,
+        'type': 'project'
     };
 
     var options = {
@@ -26,6 +27,7 @@ Meteor.publish('docs:project', function(version, project){
 
     var query = {
         '_version': version,
+        'type': 'project',
         slug: project
     };
 

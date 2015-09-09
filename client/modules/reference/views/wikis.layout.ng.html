@@ -1,0 +1,21 @@
+<div class="row er-page-header">
+    <div class="col-md-12 er-page-title">
+        <h1>Wikis</h1>
+    </div>
+    <div class="col-md-12 er-page-breadcrumbs">
+        <div class="btn-group btn-breadcrumb">
+            <a class="btn btn-default">
+                <select ng-model="selection.wiki" ng-change="setWiki()">
+                    <option ng-repeat="wiki in wikis">{{wiki.slug}}</option>
+                </select>
+            </a>
+            <a class="btn btn-default">
+                <select ng-model="selection.page" ng-change="setPage()" ng-disabled="!selection.wiki">
+                    <option ng-repeat="page in pages">{{page.slug}}</option>
+                </select>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div ui-view=""></div>

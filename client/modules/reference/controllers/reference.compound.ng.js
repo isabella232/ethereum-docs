@@ -4,6 +4,7 @@ angular
 
 function ReferenceCompoundController($meteor, $scope) {
 
+
     $scope.compound = $meteor.collection(function(){
         return DocsCompounds.find({
             _version: $scope.selection.version,
