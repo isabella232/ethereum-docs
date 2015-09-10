@@ -75,6 +75,7 @@ function compound($compile, $templateCache, $state) {
             "kind",
             "prot",
             'briefdescription',
+            'detaileddescription',
             'sections'
         ]);
 
@@ -94,9 +95,17 @@ function compound($compile, $templateCache, $state) {
 
                 case 'briefdescription':
                     scope.description = value;
-                    $section.addClass('compound-summary');
+                    $section.addClass('compound-brief-description');
                     $section.append($compile(
-                        $templateCache.get('client/components/compounds/views/description.ng.html')
+                        $templateCache.get('client/components/compounds/views/brief-description.ng.html')
+                    )(scope));
+                    break;
+
+                case 'detaileddescription':
+                    scope.description = value;
+                    $section.addClass('compound-detailed-description');
+                    $section.append($compile(
+                        $templateCache.get('client/components/compounds/views/detailed-description.ng.html')
                     )(scope));
                     break;
 
