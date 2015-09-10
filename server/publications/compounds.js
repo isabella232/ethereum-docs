@@ -12,7 +12,8 @@ Meteor.publish('docs:compounds', function(version, project){
         fields: {
             _version: 1,
             _project: 1,
-            slug: 1
+            slug: 1,
+            summary: 1
         }
     };
 

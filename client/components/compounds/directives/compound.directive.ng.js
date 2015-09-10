@@ -6,7 +6,6 @@ function compound($compile, $templateCache, $state) {
 
     return {
         restrict: 'E',
-        controller: 'CompoundController',
         scope: {
             parser: '=',
             body: "="

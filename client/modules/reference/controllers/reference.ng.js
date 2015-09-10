@@ -35,4 +35,12 @@ function ReferenceController($meteor, $scope, ReferenceStateService, $state) {
         })
     };
 
+    $scope.sidebarClassFilter = function(item){
+        return (item.summary.kind == 'class' || item.summary.kind == 'struct');
+    };
+
+    $scope.sidebarFileFilter = function(item){
+        return (item.summary.kind == 'file');
+    };
+
 }
