@@ -13,8 +13,6 @@ function compoundParagraphs($compile, $templateCache, $state) {
 
             scope.items.forEach(function(item){
 
-                console.log(item)
-
                 var $paragraph = $('<div></div>');
                 $paragraph.html(item);
                 element.append($paragraph);

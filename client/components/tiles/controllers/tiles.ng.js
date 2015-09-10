@@ -43,7 +43,7 @@ function TilesController($element, $scope, $state, $templateCache, $compile) {
                 }
 
                 var $page = $('<div class="er-tiles-page"></div>');
-                var $section = $('<section class="animated" style="background:#555;" id="'+tile+'"></section>');
+                var $section = $('<section class="animated" style="background:#ecf0f1;" id="'+tile+'"></section>');
                 $section.append($box);
                 $section.append($page);
 

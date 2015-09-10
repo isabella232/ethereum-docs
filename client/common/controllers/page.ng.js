@@ -5,7 +5,7 @@ angular
 
 function PageController($scope) {
 
-    $scope.background = '#4c5053';
+    $scope.background = '#ecf0f1';
 
     // scope for tiles (list of versions etc) - controllers
     // proper state service for reference
