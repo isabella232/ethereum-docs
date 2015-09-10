@@ -8,7 +8,6 @@ function tutorialsRoutes($stateProvider) {
         url: 'tutorials/',
         controller: 'TutorialsController',
         templateUrl: 'client/modules/tutorials/views/tutorials.layout.ng.html',
-        background: '#4c5053',
         tileTemplateUrl: 'client/modules/tutorials/views/tutorials.tile.ng.html',
         abstract: true
     });

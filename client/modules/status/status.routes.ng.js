@@ -8,7 +8,6 @@ function statusRoutes($stateProvider) {
         url: 'status/',
         controller: 'StatusController',
         templateUrl: 'client/modules/status/views/status.layout.ng.html',
-        background: '#4c5053',
         tileTemplateUrl: 'client/modules/status/views/status.tile.ng.html',
         abstract: true
     });

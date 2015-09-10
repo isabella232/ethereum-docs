@@ -8,6 +8,7 @@ function referenceRoutes($stateProvider) {
         url: 'reference/',
         controller: 'ReferenceController',
         templateUrl: 'client/modules/reference/views/reference.layout.ng.html',
+        tileTemplateUrl: 'client/modules/reference/views/reference.tile.ng.html',
         abstract: true,
         resolve: {
             selection: function($stateParams){

@@ -30,16 +30,20 @@ function TilesController($element, $scope, $state, $templateCache, $compile) {
 
             tiles.forEach(function(tile) {
 
-                var tileBackground = $state.get(tile).background;
-
                 var $box = $('<div class="er-tiles-box"></div>');
 
-                $box.append($compile(
-                    $templateCache.get($state.get(tile).tileTemplateUrl)
-                )($scope));
+                var template = $templateCache.get(
+                    $state.get(tile).tileTemplateUrl
+                );
+
+                if (template) {
+                    $box.append($compile(template)($scope));
+                } else {
+                    console.log('No template found for tile: ' + tile);
+                }
 
                 var $page = $('<div class="er-tiles-page"></div>');
-                var $section = $('<section class="animated" style="background:'+tileBackground+';" id="'+tile+'"></section>');
+                var $section = $('<section class="animated" style="background:#555;" id="'+tile+'"></section>');
                 $section.append($box);
                 $section.append($page);
 

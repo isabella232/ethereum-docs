@@ -8,6 +8,7 @@ function wikisRoutes($stateProvider) {
         url: 'wikis/',
         controller: 'WikisController',
         templateUrl: 'client/modules/wikis/views/wikis.layout.ng.html',
+        tileTemplateUrl: 'client/modules/wikis/views/wikis.tile.ng.html',
         abstract: true,
         resolve: {
             selection: function($stateParams){
