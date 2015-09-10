@@ -23,3 +23,5 @@ meteorhacks:npm
 
 npm-container
 mquandalle:bower
+sacha:spin
+urigo:angular-blaze-template

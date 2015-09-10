@@ -36,17 +36,31 @@ function compound($compile, $templateCache, $state) {
 
         switch (scope.body.kind) {
 
-            case 'page':
-                return createDoxygenPage(scope);
+            case 'class':
+            case 'struct':
+                return createDoxygenClass(scope);
 
             case 'file':
                 return createDoxygenFile(scope);
 
-            case 'class':
-                return createDoxygenClass(scope);
+            case 'page':
+                return createDoxygenPage(scope);
 
             case 'dir':
                 return createDoxygenDir(scope);
+
+            // TODO: Doxygen compound templates
+            //case 'union':
+            //case 'interface':
+            //case 'protocol':
+            //case 'category':
+            //case 'exception':
+            //case 'example':
+            //case 'namespace':
+            //case 'group':
+
+            default:
+                console.log('No template for Doxygen ' + scope.body.kind);
 
         }
 
