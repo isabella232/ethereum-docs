@@ -5,7 +5,7 @@
     <div class="col-md-4">
         <ul>
             <li ng-repeat="compound in compounds">
-                <a ui-sref="page.reference.project.compound({version:selection.version,project:selection.project,compound:compound.slug})">{{compound.slug}}</a>
+                <a ng-class="{active: selection.compound == compound.slug}" ui-sref="page.reference.project.compound({version:selection.version,project:selection.project,compound:compound.slug})">{{compound.slug}}</a>
             </li>
         </ul>
     </div>

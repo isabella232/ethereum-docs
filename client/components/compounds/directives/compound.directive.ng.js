@@ -74,7 +74,8 @@ function compound($compile, $templateCache, $state) {
             'name',
             "kind",
             "prot",
-            'briefdescription'
+            'briefdescription',
+            'sections'
         ]);
 
         _.forEach(sortedCompounds, function(value, key){
@@ -92,11 +93,18 @@ function compound($compile, $templateCache, $state) {
                     break;
 
                 case 'briefdescription':
-                    console.log(value)
                     scope.description = value;
                     $section.addClass('compound-summary');
                     $section.append($compile(
                         $templateCache.get('client/components/compounds/views/description.ng.html')
+                    )(scope));
+                    break;
+
+                case 'sections':
+                    scope.sections = value;
+                    $section.addClass('compound-sections');
+                    $section.append($compile(
+                        $templateCache.get('client/components/compounds/views/sections.ng.html')
                     )(scope));
                     break;
 
@@ -105,7 +113,7 @@ function compound($compile, $templateCache, $state) {
                     break;
 
                 default:
-                    console.log('No template for: ' + key);
+                    //console.log('No template for: ' + key);
                     return;
 
             }
@@ -140,7 +148,7 @@ function compound($compile, $templateCache, $state) {
                     break;
 
                 default:
-                    console.log('No template for: ' + key);
+                    //console.log('No template for: ' + key);
                     return;
 
             }
