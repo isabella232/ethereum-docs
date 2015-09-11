@@ -13,7 +13,6 @@ reywood:bootstrap3-sass
 angularui:angular-ui-bootstrap
 mongo-livedata
 monbro:mongodb-mapreduce-aggregation
-urigo:angular
 arch:ace-editor
 cwaring:modernizr
 meteorhacks:npm
@@ -25,3 +24,6 @@ npm-container
 mquandalle:bower
 sacha:spin
 urigo:angular-blaze-template
+angularui:ui-select
+urigo:angular
+angular:angular-sanitize

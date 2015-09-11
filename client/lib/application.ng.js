@@ -7,7 +7,9 @@ ethdev.configuration = (function () {
     var applicationModuleVendorDependencies = [
         'angular-meteor',
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ui.select',
+        'ngSanitize'
     ];
 
     // Add a new vertical module

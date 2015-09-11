@@ -1,17 +1,23 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-default">
-                <select ng-model="selection.wiki" ng-change="setWiki()">
-                    <option ng-repeat="wiki in wikis">{{wiki.slug}}</option>
-                </select>
-            </a>
-            <a class="btn btn-default">
-                <select ng-model="selection.page" ng-change="setPage()" ng-disabled="!selection.wiki">
-                    <option ng-repeat="page in pages">{{page.slug}}</option>
-                </select>
-            </a>
-        </div>
+    <img src="/images/wikis.png" class="img-responsive">
+</div>
+
+<div class="row ethereum-dynamic-breadcrumbs">
+    <div class="col-md-6">
+        <ui-select ng-model="selection.wiki" theme="bootstrap" on-select="setWiki()">
+            <ui-select-match placeholder="Select wiki">{{$select.selected.slug}}</ui-select-match>
+            <ui-select-choices repeat="wiki.slug as wiki in wikis">
+                <span ng-bind-html="wiki.slug | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-md-6">
+        <ui-select ng-model="selection.page" theme="bootstrap" on-select="setPage()" ng-disabled="!selection.wiki || !pages.length">
+            <ui-select-match placeholder="Select page">{{$select.selected.slug}}</ui-select-match>
+            <ui-select-choices repeat="page.slug as page in pages">
+                <span ng-bind-html="page.slug | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
     </div>
 </div>
 

@@ -1,22 +1,31 @@
 <div class="row">
-    <div class="col-md-12" style="padding-top: 30px;">
-        <div class="btn-group btn-breadcrumb">
-            <a class="btn btn-default">
-                <select ng-model="selection.version" ng-change="setVersion()">
-                    <option ng-repeat="version in versions">{{version.slug}}</option>
-                </select>
-            </a>
-            <a class="btn btn-default">
-                <select ng-model="selection.project" ng-change="setProject()" ng-disabled="!selection.version">
-                    <option ng-repeat="project in projects">{{project.slug}}</option>
-                </select>
-            </a>
-            <a class="btn btn-default">
-                <select ng-model="selection.compound" ng-change="setCompound()" ng-disabled="!selection.project">
-                    <option ng-repeat="compound in compounds">{{compound.slug}}</option>
-                </select>
-            </a>
-        </div>
+    <img src="/images/reference.png" class="img-responsive">
+</div>
+
+<div class="row ethereum-dynamic-breadcrumbs">
+    <div class="col-md-4">
+        <ui-select ng-model="selection.version" theme="bootstrap" on-select="setVersion()">
+            <ui-select-match placeholder="Select version">{{$select.selected.slug}}</ui-select-match>
+            <ui-select-choices repeat="version.slug as version in versions">
+                <span ng-bind-html="version.slug | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-md-4">
+        <ui-select ng-model="selection.project" theme="bootstrap" on-select="setProject()" ng-disabled="!selection.version || !projects.length">
+            <ui-select-match placeholder="Select project">{{$select.selected.slug}}</ui-select-match>
+            <ui-select-choices repeat="project.slug as project in projects">
+                <span ng-bind-html="project.slug | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-md-4">
+        <ui-select ng-model="selection.compound" theme="bootstrap" on-select="setCompound()" ng-disabled="!selection.project || !compounds.length">
+            <ui-select-match placeholder="Select compound">{{$select.selected.slug}}</ui-select-match>
+            <ui-select-choices repeat="compound.slug as compound in compounds">
+                <span ng-bind-html="compound.slug | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
     </div>
 </div>
 

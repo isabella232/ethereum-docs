@@ -1,44 +1,38 @@
-.er-page-header {
-  background: #3c3c3e;
+.navbar-brand {
+  display: block;
+  float: left;
+  width: 229px;
+  height: 50px;
+  background: url('/images/ETH_DEV_LOGO.svg') no-repeat center;
+}
 
-  & > .navbar-logo {
-    display: block;
-    float: left;
-    width: 199px;
-    height: 30px;
-    background: url('/images/ETH_DEV_LOGO.svg') no-repeat;
-    margin: 20px 32px;
-  }
-
-  & > ul {
+.navbar-inverse {
+  .navbar-nav {
     line-height: 16px;
-    margin: 36px 0 0;
     padding: 0;
     list-style: none;
     & > li {
-      display: block;
-      float: left;
-      margin: 0 15px;
       & > a {
-        font-size: 16px;
         color: #9f9f9f;
+        &:hover, &:focus, &:active {
+          background: none;
+          color: #cecece;
+        }
       }
       &.active {
         & > a {
+          background: none;
           color: #cecece;
+          &:hover, &:focus, &:active {
+            background: none;
+            color: #cecece;
+          }
         }
       }
     }
   }
-
-  // TODO: cover
-  & > .er-banner {
-    float: left;
-    width: 100%;
-    height: 340px;
-    background: url('/images/ETH-DEVspalsh.jpg') no-repeat top;
-    background-size: 100%;
-  }
 }
 
-
+.ethereum-dynamic-breadcrumbs {
+  margin-top: 30px;
+}
