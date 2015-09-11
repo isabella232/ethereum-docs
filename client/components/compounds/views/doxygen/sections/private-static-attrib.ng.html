@@ -1,2 +1,11 @@
 <h4>Private static attributes</h4>
-<pre>{{members}}</pre>
+<table class="table table-bordered">
+    <tr ng-repeat="member in members">
+        <td>{{member.body.name}}</td>
+        <td>
+            <span ng-repeat="typeName in member.body.type">
+                {{typeName}}
+            </span>
+        </td>
+    </tr>
+</table>
