@@ -12,6 +12,7 @@ Meteor.publish('docs:projects', function(version){
         fields: {
             _version: 1,
             slug: 1,
+            type: 1,
             summary: 1
         }
     };

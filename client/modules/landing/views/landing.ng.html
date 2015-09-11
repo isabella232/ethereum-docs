@@ -1,1 +1,18 @@
-<er-tiles class="er-tiles" tiles="tiles"></er-tiles>
+<div class="ethereum-landing" id="ethereum-tiles">
+    <div class="ethereum-tile" id="ethereum-tile-reference">
+        <div class="ethereum-tile-inner">
+            <h1><a ui-sref="page.reference.index">Reference</a></h1>
+            <ul>
+                <li ng-repeat="project in projects"><a href="" ng-click="openProject(project)">{{project.summary.name}}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="ethereum-tile" id="ethereum-tile-wikis">
+        <div class="ethereum-tile-inner">
+            <h1><a ui-sref="page.wikis.index">Wikis</a></h1>
+            <ul>
+                <li ng-repeat="wiki in wikis"><a href="" ng-click="openWiki(wiki)">{{wiki.summary.name}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

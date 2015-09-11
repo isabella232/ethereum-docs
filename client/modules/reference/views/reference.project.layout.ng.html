@@ -3,15 +3,8 @@
         <div ui-view=""></div>
     </div>
     <div class="col-md-4">
-        <h2>Classes</h2>
         <ul>
-            <li ng-repeat="compound in compounds | filter: sidebarClassFilter">
-                <a ng-class="{active: selection.compound == compound.slug}" ui-sref="page.reference.project.compound({version:selection.version,project:selection.project,compound:compound.slug})">{{compound.summary.name}}</a>
-            </li>
-        </ul>
-        <h2>Files</h2>
-        <ul>
-            <li ng-repeat="compound in compounds | filter: sidebarFileFilter">
+            <li ng-repeat="compound in compounds">
                 <a ng-class="{active: selection.compound == compound.slug}" ui-sref="page.reference.project.compound({version:selection.version,project:selection.project,compound:compound.slug})">{{compound.summary.name}}</a>
             </li>
         </ul>

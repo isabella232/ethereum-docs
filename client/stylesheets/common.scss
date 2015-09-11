@@ -37,3 +37,78 @@ body {
     animation: fadein 0.5s;
   }
 }
+
+//background: #484c4e;
+$tile-background: #2a2a2c;
+$tile-separator-dark-color: darken($tile-background, 10%);
+$tile-separator-light-color: lighten($tile-background, 10%);
+
+.ethereum-landing {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  & > .ethereum-tile {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: $tile-background;
+    color: #cecece;
+    -webkit-transition: height 0.5s ease-in-out;
+    -moz-transition: height 0.5s ease-in-out;
+    transition: height 0.5s ease-in-out;
+    &:nth-child(1) {
+      top: 0;
+      &:after {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        display: block;
+        content: '';
+        border-top: 1px solid $tile-separator-dark-color;
+      }
+      &.expanded {
+        &:after {
+          border-bottom: 1px solid $tile-separator-light-color;
+        }
+      }
+    }
+    &:nth-child(2) {
+      bottom: 0;
+      &:before {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        display: block;
+        content: '';
+        border-bottom: 1px solid $tile-separator-light-color;
+      }
+      &.expanded {
+        &:before {
+          border-top: 1px solid $tile-separator-dark-color;
+        }
+      }
+    }
+    & > .ethereum-tile-inner {
+      height: 100%;
+      padding: 30px;
+      opacity: 1;
+      -webkit-transition: opacity 0.5s ease-in-out;
+      -moz-transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
+      & > h1 {
+        margin: 0 0 30px 0;
+        padding: 0;
+      }
+    }
+    &.expanded {
+      height: 100%;
+      z-index: 999;
+      & > .ethereum-tile-inner {
+        opacity: 0;
+      }
+    }
+  }
+}

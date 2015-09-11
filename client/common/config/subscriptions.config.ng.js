@@ -9,12 +9,22 @@ function runState($rootScope, SubscriptionsService) {
         var unsubscribe = [];
         var subscribe = [];
 
-        conditionalSubscription(fromState, toState, 'versions', function(state){
+        conditionalSubscription(fromState, toState, {
+            key: 'versions'
+        }, function(state){
             return state.name.substring(0, 14) == "page.reference";
         });
 
-        conditionalSubscription(fromState, toState, 'wikis', function(state){
-            return state.name.substring(0, 10) == "page.wikis";
+        conditionalSubscription(fromState, toState, {
+            key: 'mainVersion'
+        }, function(state){
+            return state.name.substring(0, 7) == "landing";
+        });
+
+        conditionalSubscription(fromState, toState, {
+            key: 'wikis'
+        }, function(state){
+            return state.name.substring(0, 10) == "page.wikis" || state.name.substring(0, 7) == "landing";
         });
 
         _.map(fromParams, function (value, key) {
@@ -64,6 +74,10 @@ function runState($rootScope, SubscriptionsService) {
                     SubscriptionsService.versions.unsubscribe();
                     break;
 
+                case 'mainVersion':
+                    SubscriptionsService.version.unsubscribe('develop');
+                    break;
+
                 case 'version':
                     SubscriptionsService.version.unsubscribe(fromParams.version);
                     break;
@@ -100,6 +114,10 @@ function runState($rootScope, SubscriptionsService) {
                     SubscriptionsService.versions.subscribe();
                     break;
 
+                case 'mainVersion':
+                    SubscriptionsService.version.subscribe('develop');
+                    break;
+
                 case 'version':
                     SubscriptionsService.version.subscribe(toParams.version);
                     break;
@@ -128,19 +146,15 @@ function runState($rootScope, SubscriptionsService) {
 
         });
 
-        function conditionalSubscription(fromState, toState, key, condition){
+        function conditionalSubscription(fromState, toState, params, condition){
 
             if (!condition(fromState) && condition(toState)) {
 
-                subscribe.push({
-                    key: key
-                });
+                subscribe.push(params);
 
             } else if (condition(fromState) && !condition(toState)) {
 
-                unsubscribe.push({
-                    key: key
-                });
+                unsubscribe.push(params);
 
             }
 
