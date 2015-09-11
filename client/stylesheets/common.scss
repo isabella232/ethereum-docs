@@ -29,13 +29,11 @@ body {
 }
 
 .animated {
-  & > div {
-    -webkit-animation: fadein 0.5s;
-    -moz-animation: fadein 0.5s;
-    -ms-animation: fadein 0.5s;
-    -o-animation: fadein 0.5s;
-    animation: fadein 0.5s;
-  }
+  -webkit-animation: fadein 0.5s;
+  -moz-animation: fadein 0.5s;
+  -ms-animation: fadein 0.5s;
+  -o-animation: fadein 0.5s;
+  animation: fadein 0.5s;
 }
 
 //background: #484c4e;
@@ -112,3 +110,24 @@ $tile-separator-light-color: lighten($tile-background, 10%);
     }
   }
 }
+
+
+
+
+
+
+
+.ui-select-bootstrap > .ui-select-choices {
+  &.ui-compound-sidebar {
+    //position: relative;
+    max-height: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+
+
+
+

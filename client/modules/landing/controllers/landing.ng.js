@@ -2,7 +2,7 @@ angular
     .module('ethdev')
     .controller('LandingController', LandingController);
 
-function LandingController($meteor, $scope, $state) {
+function LandingController($meteor, $scope, $state, $timeout) {
 
     $scope.projects = $meteor.collection(function(){
         return DocsProjects.find({

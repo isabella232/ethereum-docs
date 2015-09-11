@@ -2,11 +2,4 @@
     <div class="col-md-8">
         <div ui-view=""></div>
     </div>
-    <div class="col-md-4">
-        <ul>
-            <li ng-repeat="compound in compounds">
-                <a ng-class="{active: selection.compound == compound.slug}" ui-sref="page.reference.project.compound({version:selection.version,project:selection.project,compound:compound.slug})">{{compound.summary.name}}</a>
-            </li>
-        </ul>
-    </div>
 </div>

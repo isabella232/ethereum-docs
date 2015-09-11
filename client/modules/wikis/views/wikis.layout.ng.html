@@ -3,7 +3,7 @@
 </div>
 
 <div class="row ethereum-dynamic-breadcrumbs">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <ui-select ng-model="selection.wiki" theme="bootstrap" on-select="setWiki()">
             <ui-select-match placeholder="Select wiki">{{$select.selected.slug}}</ui-select-match>
             <ui-select-choices repeat="wiki.slug as wiki in wikis">
@@ -11,13 +11,19 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-6">
-        <ui-select ng-model="selection.page" theme="bootstrap" on-select="setPage()" ng-disabled="!selection.wiki || !pages.length">
-            <ui-select-match placeholder="Select page">{{$select.selected.slug}}</ui-select-match>
-            <ui-select-choices repeat="page.slug as page in pages">
-                <span ng-bind-html="page.slug | highlight: $select.search"></span>
-            </ui-select-choices>
-        </ui-select>
+    <div class="col-md-4">
+        <div class="ui-select-container ui-select-bootstrap dropdown ng-valid open" theme="bootstrap" ng-hide="!selection.wiki">
+            <ul class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu ui-compound-sidebar">
+                <li class="ui-select-choices-group" style="height:110px;" ng-hide="pages.length">
+                    <blaze-template name="spinner"></blaze-template>
+                </li>
+                <li class="ui-select-choices-group">
+                    <div class="ui-select-choices-row" ng-class="{active: selection.page == page.slug}" ng-repeat="page in pages">
+                        <a ui-sref="page.wikis.wiki.page({wiki:page._project,page:page.slug})" class="ui-select-choices-row-inner"><span>{{page.slug}}</span></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 

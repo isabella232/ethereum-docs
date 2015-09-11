@@ -20,12 +20,18 @@
         </ui-select>
     </div>
     <div class="col-md-4">
-        <ui-select ng-model="selection.compound" theme="bootstrap" on-select="setCompound()" ng-disabled="!selection.project || !compounds.length">
-            <ui-select-match placeholder="Select compound">{{$select.selected.slug}}</ui-select-match>
-            <ui-select-choices repeat="compound.slug as compound in compounds">
-                <span ng-bind-html="compound.slug | highlight: $select.search"></span>
-            </ui-select-choices>
-        </ui-select>
+        <div class="ui-select-container ui-select-bootstrap dropdown ng-valid open" theme="bootstrap" ng-hide="!selection.project">
+            <ul class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu ui-compound-sidebar">
+                <li class="ui-select-choices-group" style="height:110px;" ng-hide="compounds.length">
+                    <blaze-template name="spinner"></blaze-template>
+                </li>
+                <li class="ui-select-choices-group">
+                    <div class="ui-select-choices-row" ng-class="{active: selection.compound == compound.slug}" ng-repeat="compound in compounds">
+                        <a ui-sref="page.reference.project.compound({version:compound._version,project:compound._project,compound:compound.slug})" class="ui-select-choices-row-inner"><span>{{compound.slug}}</span></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
