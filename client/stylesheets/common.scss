@@ -22,9 +22,9 @@ body {
 .fullscreen {
   position: absolute;
   left: 0;
+  right: 0;
   top: 50px;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
   overflow-y: scroll;
 }
 
@@ -119,7 +119,7 @@ $tile-separator-light-color: lighten($tile-background, 10%);
 
 .ui-select-bootstrap > .ui-select-choices {
   &.ui-compound-sidebar {
-    //position: relative;
+    position: relative;
     max-height: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;

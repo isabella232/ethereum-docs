@@ -19,7 +19,7 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 pull-right">
         <div class="ui-select-container ui-select-bootstrap dropdown ng-valid open" theme="bootstrap" ng-hide="!selection.project">
             <ul class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu ui-compound-sidebar">
                 <li class="ui-select-choices-group" style="height:110px;" ng-hide="compounds.length">
@@ -33,6 +33,7 @@
             </ul>
         </div>
     </div>
+    <div class="col-md-8">
+        <div ui-view=""></div>
+    </div>
 </div>
-
-<div ui-view=""></div>
