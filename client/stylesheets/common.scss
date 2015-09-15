@@ -44,6 +44,69 @@ $tile-separator-light-color: lighten($tile-background, 10%);
 .ethereum-landing {
   position: absolute;
   left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/images/landing/hands.png') no-repeat bottom center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 60px;
+
+  & > .ethereum-landing-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    & > .ethereum-landing-reference, & > .ethereum-landing-wiki {
+      position: absolute;
+      top: 0;
+      & > h1 {
+        color: #666;
+      }
+      & > ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        & > li {
+          & > a {
+            color: #666;
+            &:hover {
+              color: #999;
+            }
+          }
+        }
+      }
+    }
+
+    & > .ethereum-landing-reference {
+      left: 0;
+      text-align: left;
+    }
+
+    & > .ethereum-landing-wiki {
+      position: absolute;
+      right: 0;
+      text-align: right;
+    }
+
+    & > .ethereum-landing-logo {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 199px;
+      height: 50px;
+      background: url('/images/ETH_DEV_LOGO.svg') no-repeat top left;
+    }
+  }
+}
+
+
+/*.ethereum-landing {
+  position: absolute;
+  left: 0;
   top: 0;
   width: 100%;
   height: 100%;
@@ -109,7 +172,7 @@ $tile-separator-light-color: lighten($tile-background, 10%);
       }
     }
   }
-}
+}*/
 
 
 
@@ -129,20 +192,6 @@ $tile-separator-light-color: lighten($tile-background, 10%);
 
 
 
-
-
-.ethdev-landing {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: url('/images/splash.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 
 .language {
   display: inline-block;

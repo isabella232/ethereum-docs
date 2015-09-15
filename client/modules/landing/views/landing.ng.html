@@ -1,20 +1,22 @@
-<div class="ethereum-landing" id="ethereum-tiles">
-    <div class="ethereum-tile" id="ethereum-tile-reference">
-        <div class="ethereum-tile-inner">
-            <h1><a ui-sref="page.reference.index">Reference</a></h1>
+<div class="ethereum-landing">
+    <div class="ethereum-landing-inner">
+
+        <div class="ethereum-landing-reference">
+            <h1>Reference</h1>
             <ul>
-                <li ng-repeat="project in projects"><a href="" ng-click="openProject(project)">{{project.summary.name}}</a></li>
+                <li ng-repeat="project in projects">
+                    <a ui-sref="page.reference.project.index({version:project._version,project:project.slug})">{{project.summary.name}}</a>
+                </li>
             </ul>
         </div>
-    </div>
-    <div class="ethereum-tile" id="ethereum-tile-wiki">
-        <div class="ethereum-tile-inner">
-            <h1><a ui-sref="page.wiki.index">Wiki</a></h1>
+        <div class="ethereum-landing-wiki">
+            <h1>Wiki</h1>
             <ul>
-                <li ng-repeat="book in books"><a href="" ng-click="openBook(book)">{{book.summary.name}}</a></li>
+                <li ng-repeat="book in books">
+                    <a ui-sref="page.wiki.book.index({book:book.slug})">{{book.summary.name}}</a>
+                </li>
             </ul>
         </div>
+        <div class="ethereum-landing-logo"></div>
     </div>
 </div>
-
-<div class="ethdev-landing" style="display: none;"></div>
