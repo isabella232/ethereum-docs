@@ -4,9 +4,9 @@ angular
 
 function ReferenceController($meteor, $scope, ReferenceStateService, $state) {
 
-    $scope.versions = $meteor.collection(DocsVersions);
-    $scope.projects = $meteor.collection(DocsProjects);
-    $scope.compounds = $meteor.collection(DocsCompounds);
+    $scope.versions = $meteor.collection(DocsReferenceVersions);
+    $scope.projects = $meteor.collection(DocsReferenceProjects);
+    $scope.compounds = $meteor.collection(DocsReferenceCompounds);
 
     $scope.selection = ReferenceStateService.getSelection();
 

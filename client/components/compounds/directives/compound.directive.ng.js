@@ -18,7 +18,7 @@ function compound($compile, $templateCache, $state) {
                     element.append(createJsdocCompounds(scope));
                     break;
 
-                case 'markdown':
+                case 'marked':
                     element.append(createMarkdownCompounds(scope));
                     break;
 
@@ -240,7 +240,6 @@ function compound($compile, $templateCache, $state) {
     }
 
     function createMarkdownCompounds(scope) {
-
         var $mdBlock = $('<div></div>');
         $mdBlock.html(scope.body.content);
         return $mdBlock;

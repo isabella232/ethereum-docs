@@ -5,7 +5,7 @@ angular
 function ReferenceVersionController($meteor, $scope) {
 
     $scope.version = $meteor.collection(function(){
-        return DocsVersions.find({
+        return DocsReferenceVersions.find({
             slug: $scope.selection.version
         });
     });

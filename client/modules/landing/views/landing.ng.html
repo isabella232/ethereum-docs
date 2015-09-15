@@ -7,12 +7,14 @@
             </ul>
         </div>
     </div>
-    <div class="ethereum-tile" id="ethereum-tile-wikis">
+    <div class="ethereum-tile" id="ethereum-tile-wiki">
         <div class="ethereum-tile-inner">
-            <h1><a ui-sref="page.wikis.index">Wikis</a></h1>
+            <h1><a ui-sref="page.wiki.index">Wiki</a></h1>
             <ul>
-                <li ng-repeat="wiki in wikis"><a href="" ng-click="openWiki(wiki)">{{wiki.summary.name}}</a></li>
+                <li ng-repeat="book in books"><a href="" ng-click="openBook(book)">{{book.summary.name}}</a></li>
             </ul>
         </div>
     </div>
 </div>
+
+<div class="ethdev-landing" style="display: none;"></div>

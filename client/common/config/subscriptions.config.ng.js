@@ -4,27 +4,28 @@ angular
 
 function runState($rootScope, SubscriptionsService) {
 
+    var states = {
+        landing: 'landing',
+        reference: 'page.reference',
+        wiki: 'page.wiki'
+    };
+
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
         var unsubscribe = [];
         var subscribe = [];
 
-        conditionalSubscription(fromState, toState, {
-            key: 'versions'
-        }, function(state){
-            return state.name.substring(0, 14) == "page.reference";
+        conditionalSubscription(fromState, toState, 'versions', function(state){
+            return state.name.substring(0, 14) == states.reference;
         });
 
-        conditionalSubscription(fromState, toState, {
-            key: 'mainVersion'
-        }, function(state){
-            return state.name.substring(0, 7) == "landing";
+        conditionalSubscription(fromState, toState, 'books', function(state){
+            return state.name.substring(0, 9) == states.wiki || state.name.substring(0, 7) == states.landing;
         });
 
-        conditionalSubscription(fromState, toState, {
-            key: 'wikis'
-        }, function(state){
-            return state.name.substring(0, 10) == "page.wikis" || state.name.substring(0, 7) == "landing";
+        conditionalSubscription(fromState, toState, 'version', function(state){
+            toParams.version = 'develop';
+            return state.name.substring(0, 7) == states.landing;
         });
 
         _.map(fromParams, function (value, key) {
@@ -71,35 +72,34 @@ function runState($rootScope, SubscriptionsService) {
             switch (subscriptionData.key) {
 
                 case 'versions':
-                    SubscriptionsService.versions.unsubscribe();
-                    break;
-
-                case 'mainVersion':
-                    SubscriptionsService.version.unsubscribe('develop');
+                    SubscriptionsService.reference.versions.unsubscribe();
                     break;
 
                 case 'version':
-                    SubscriptionsService.version.unsubscribe(fromParams.version);
+                    SubscriptionsService.reference.version.unsubscribe(fromParams.version);
+                    SubscriptionsService.reference.projects.unsubscribe(fromParams.version);
                     break;
 
                 case 'project':
-                    SubscriptionsService.project.unsubscribe(fromParams.version, fromParams.project);
+                    SubscriptionsService.reference.project.unsubscribe(fromParams.version, fromParams.project);
+                    SubscriptionsService.reference.compounds.unsubscribe(fromParams.version, fromParams.project);
                     break;
 
                 case 'compound':
-                    SubscriptionsService.compound.unsubscribe(fromParams.version, fromParams.project, fromParams.compound);
+                    SubscriptionsService.reference.compound.unsubscribe(fromParams.version, fromParams.project, fromParams.compound);
                     break;
 
-                case 'wikis':
-                    SubscriptionsService.wikis.unsubscribe();
+                case 'books':
+                    SubscriptionsService.wiki.books.unsubscribe();
                     break;
 
-                case 'wiki':
-                    SubscriptionsService.wiki.unsubscribe(fromParams.wiki);
+                case 'book':
+                    SubscriptionsService.wiki.book.unsubscribe(fromParams.book);
+                    SubscriptionsService.wiki.pages.unsubscribe(fromParams.book);
                     break;
 
                 case 'page':
-                    SubscriptionsService.compound.unsubscribe('develop', fromParams.wiki, fromParams.page);
+                    SubscriptionsService.wiki.page.unsubscribe(fromParams.book, fromParams.page);
                     break;
 
             }
@@ -111,50 +111,53 @@ function runState($rootScope, SubscriptionsService) {
             switch (subscriptionData.key) {
 
                 case 'versions':
-                    SubscriptionsService.versions.subscribe();
-                    break;
-
-                case 'mainVersion':
-                    SubscriptionsService.version.subscribe('develop');
+                    SubscriptionsService.reference.versions.subscribe();
                     break;
 
                 case 'version':
-                    SubscriptionsService.version.subscribe(toParams.version);
+                    SubscriptionsService.reference.version.subscribe(toParams.version);
+                    SubscriptionsService.reference.projects.subscribe(toParams.version);
                     break;
 
                 case 'project':
-                    SubscriptionsService.project.subscribe(toParams.version, toParams.project);
+                    SubscriptionsService.reference.project.subscribe(toParams.version, toParams.project);
+                    SubscriptionsService.reference.compounds.subscribe(toParams.version, toParams.project);
                     break;
 
                 case 'compound':
-                    SubscriptionsService.compound.subscribe(toParams.version, toParams.project, toParams.compound);
+                    SubscriptionsService.reference.compound.subscribe(toParams.version, toParams.project, toParams.compound);
                     break;
 
-                case 'wikis':
-                    SubscriptionsService.wikis.subscribe();
+                case 'books':
+                    SubscriptionsService.wiki.books.subscribe();
                     break;
 
-                case 'wiki':
-                    SubscriptionsService.wiki.subscribe(toParams.wiki);
+                case 'book':
+                    SubscriptionsService.wiki.book.subscribe(toParams.book);
+                    SubscriptionsService.wiki.pages.subscribe(toParams.book);
                     break;
 
                 case 'page':
-                    SubscriptionsService.compound.subscribe('develop', toParams.wiki, toParams.page);
+                    SubscriptionsService.wiki.page.subscribe(toParams.book, toParams.page);
                     break;
 
             }
 
         });
 
-        function conditionalSubscription(fromState, toState, params, condition){
+        function conditionalSubscription(fromState, toState, key, condition){
 
             if (!condition(fromState) && condition(toState)) {
 
-                subscribe.push(params);
+                subscribe.push({
+                    key: key
+                });
 
             } else if (condition(fromState) && !condition(toState)) {
 
-                unsubscribe.push(params);
+                unsubscribe.push({
+                    key: key
+                });
 
             }
 

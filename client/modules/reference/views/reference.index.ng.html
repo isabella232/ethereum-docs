@@ -1,7 +1,6 @@
 <div class="row">
     <div class="col-md-12">
         <h2>Available versions</h2>
-        <div style="border:1px dashed #ccc;padding:30px;margin-bottom:30px;">{{versions}}</div>
         <ul>
             <li ng-repeat="version in versions">
                 <a ui-sref="page.reference.version({version:version.slug})">{{version.slug}}</a>

@@ -13,73 +13,96 @@ function SubscriptionsService($meteor) {
     // Current subscriptions
     var subscriptions = [];
 
-    var Versions = {
+    var consoleSubscribeStyle = 'background: #3A9E00; color: #eeeeee;';
+    var consoleUnsubscribeStyle = 'background: #9E1500; color: #eeeeee;';
+
+    var referenceVersions = {
         subscribe: function(){
-            subscribe('docs:versions');
-            //console.log('Subscribed to all versions');
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'All reference versions');
+            subscribe('docs:reference:versions');
         },
         unsubscribe: function(){
-            unsubscribe('docs:versions');
-            //console.log('Unsubscribed from all versions');
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'All reference versions');
+            unsubscribe('docs:reference:versions');
         }
     };
 
-    var Version = {
+    var referenceVersion = {
         subscribe: function(version){
-            subscribe('docs:version', [
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'Reference version: ' + version);
+            subscribe('docs:reference:version', [
                 version
             ]);
-            subscribe('docs:projects', [
-                version
-            ]);
-            //console.log('Subscribed to version: ' + version);
-            //console.log('Subscribed to all projects in version: ' + version);
         },
         unsubscribe: function(version){
-            unsubscribe('docs:version', [
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'Reference version: ' + version);
+            unsubscribe('docs:reference:version', [
                 version
             ]);
-            unsubscribe('docs:projects', [
-                version
-            ]);
-            //console.log('Unsubscribed from version: ' + version);
-            //console.log('Unsubscribed from all projects in version: ' + version);
         }
     };
 
-    var Project = {
-        subscribe: function(version, project){
-            subscribe('docs:project', [
-                version,
-                project
+    var referenceProjects = {
+        subscribe: function(version){
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'All projects in reference version: ' + version);
+            subscribe('docs:reference:projects', [
+                version
             ]);
-            subscribe('docs:compounds', [
+        },
+        unsubscribe: function(version){
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'All projects in reference version: ' + version);
+            unsubscribe('docs:reference:projects', [
+                version
+            ]);
+        }
+    };
+
+    var referenceProject = {
+        subscribe: function(version, project){
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'Project: ' + project + ', version: ' + version);
+            subscribe('docs:reference:project', [
                 version,
                 project
             ]);
         },
         unsubscribe: function(version, project){
-            unsubscribe('docs:project', [
-                version,
-                project
-            ]);
-            unsubscribe('docs:compounds', [
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'Project: ' + project + ', version: ' + version);
+            unsubscribe('docs:reference:project', [
                 version,
                 project
             ]);
         }
     };
 
-    var Compound = {
+    var referenceCompounds = {
+        subscribe: function(version, project){
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'All compound in project: ' + project + ', version: ' + version);
+            subscribe('docs:reference:compounds', [
+                version,
+                project
+            ]);
+        },
+        unsubscribe: function(version, project){
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'All compound in project: ' + project + ', version: ' + version);
+            unsubscribe('docs:reference:compounds', [
+                version,
+                project
+            ]);
+        }
+    };
+
+    var referenceCompound = {
         subscribe: function(version, project, compound){
-            subscribe('docs:compound', [
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'Compound: ' + compound + ', project: ' + project + ', version: ' + version);
+            subscribe('docs:reference:compound', [
                 version,
                 project,
                 compound
             ]);
         },
         unsubscribe: function(version, project, compound){
-            unsubscribe('docs:compound', [
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'Compound: ' + compound + ', project: ' + project + ', version: ' + version);
+            unsubscribe('docs:reference:compound', [
                 version,
                 project,
                 compound
@@ -87,53 +110,79 @@ function SubscriptionsService($meteor) {
         }
     };
 
-    var Wikis = {
+    var wikiBooks = {
         subscribe: function(){
-            subscribe('docs:wikis', [
-                'develop'
-            ]);
-            //console.log('Subscribed to all wikis');
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'All wiki books');
+            subscribe('docs:wiki:books');
         },
         unsubscribe: function(){
-            unsubscribe('docs:wikis', [
-                'develop'
-            ]);
-            //console.log('Unsubscribed from all wikis');
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'All wiki books');
+            unsubscribe('docs:wiki:books');
         }
     };
 
-    var Wiki = {
-        subscribe: function(wiki){
-            subscribe('docs:wiki', [
-                wiki
+    var wikiBook = {
+        subscribe: function(book){
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'Wiki book: ' + book);
+            subscribe('docs:wiki:book', [
+                book
             ]);
-            subscribe('docs:compounds', [
-                'develop',
-                wiki
-            ]);
-            //console.log('Subscribed to wiki: ' + wiki);
-            //console.log('Subscribed to all pages in wiki: ' + wiki);
         },
-        unsubscribe: function(wiki){
-            unsubscribe('docs:wiki', [
-                wiki
+        unsubscribe: function(book){
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'Wiki book: ' + book);
+            unsubscribe('docs:wiki:book', [
+                book
             ]);
-            unsubscribe('docs:compounds', [
-                'develop',
-                wiki
+        }
+    };
+
+    var wikiPages = {
+        subscribe: function(book){
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'All pages in wiki book: ' + book);
+            subscribe('docs:wiki:pages', [
+                book
             ]);
-            //console.log('Unsubscribed from wiki: ' + wiki);
-            //console.log('Unsubscribed from all pages in wiki: ' + wiki);
+        },
+        unsubscribe: function(book){
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'All pages in wiki book: ' + book);
+            unsubscribe('docs:wiki:pages', [
+                book
+            ]);
+        }
+    };
+
+    var wikiPage = {
+        subscribe: function(book, page){
+            console.log('%c + Subscription ', consoleSubscribeStyle, 'Page: ' + page + ', book: ' + book);
+            subscribe('docs:wiki:page', [
+                book,
+                page
+            ]);
+        },
+        unsubscribe: function(book, page){
+            console.log('%c - Subscription ', consoleUnsubscribeStyle, 'Page: ' + page + ', book: ' + book);
+            unsubscribe('docs:wiki:page', [
+                book,
+                page
+            ]);
         }
     };
 
     return {
-        versions: Versions,
-        version: Version,
-        project: Project,
-        compound: Compound,
-        wikis: Wikis,
-        wiki: Wiki
+        reference: {
+            versions: referenceVersions,
+            version: referenceVersion,
+            projects: referenceProjects,
+            project: referenceProject,
+            compounds: referenceCompounds,
+            compound: referenceCompound
+        },
+        wiki: {
+            books: wikiBooks,
+            book: wikiBook,
+            pages: wikiPages,
+            page: wikiPage
+        }
     };
 
     function subscribe(key, args){

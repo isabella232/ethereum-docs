@@ -6,7 +6,7 @@ function ReferenceCompoundController($meteor, $scope) {
 
 
     $scope.compound = $meteor.collection(function(){
-        return DocsCompounds.find({
+        return DocsReferenceCompounds.find({
             _version: $scope.selection.version,
             _project: $scope.selection.project,
             slug: $scope.selection.compound

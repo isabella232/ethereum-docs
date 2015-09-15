@@ -131,3 +131,33 @@ $tile-separator-light-color: lighten($tile-background, 10%);
 
 
 
+.ethdev-landing {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/images/splash.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.language {
+  display: inline-block;
+  float: left;
+  width: 16px;
+  height: 12px;
+  margin-right: 5px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  &.english {
+    background: url('/images/flags/english.png') no-repeat center;
+  }
+  &.japanese {
+    background: url('/images/flags/japanese.png') no-repeat center;
+  }
+}
+
+

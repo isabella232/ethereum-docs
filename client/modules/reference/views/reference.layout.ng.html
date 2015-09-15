@@ -27,7 +27,7 @@
                 </li>
                 <li class="ui-select-choices-group">
                     <div class="ui-select-choices-row" ng-class="{active: selection.compound == compound.slug}" ng-repeat="compound in compounds">
-                        <a ui-sref="page.reference.project.compound({version:compound._version,project:compound._project,compound:compound.slug})" class="ui-select-choices-row-inner"><span>{{compound.slug}}</span></a>
+                        <a ui-sref="page.reference.project.compound({version:compound._version,project:compound._project,compound:compound.slug})" class="ui-select-choices-row-inner"><span>{{compound.summary.name}}</span></a>
                     </div>
                 </li>
             </ul>

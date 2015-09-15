@@ -1,8 +1,6 @@
 <div class="row">
     <div class="col-md-12">
         <h2>{{version[0].slug}}</h2>
-        <div style="border:1px dashed #ccc;padding:30px;margin-bottom:30px;">{{version}}</div>
-
         <ul>
             <li ng-repeat="project in projects">
                 <a ui-sref="page.reference.project.index({version:selection.version,project:project.slug})">{{project.summary.name}}</a>
