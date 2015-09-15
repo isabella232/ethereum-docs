@@ -13,7 +13,7 @@
             <h1>Wiki</h1>
             <ul>
                 <li ng-repeat="book in books">
-                    <a ui-sref="page.wiki.book.index({book:book.slug})">{{book.summary.name}}</a>
+                    <a ui-sref="page.wiki.book.index({book:book.slug,language:'english'})">{{book.summary.name}}</a>
                 </li>
             </ul>
         </div>
