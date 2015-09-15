@@ -7,7 +7,7 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-4 pull-right">
+    <div class="col-md-4 pull-right" ng-hide="!selection.book">
         <blaze-template name="spinner" ng-hide="pages.length"></blaze-template>
         <ethereum-wiki-sidebar pages="pages" selection="selection" ng-if="pages.length"></ethereum-wiki-sidebar>
     </div>

@@ -19,7 +19,7 @@ function WikiController($meteor, $scope, WikiStateService, $state) {
     $scope.setBook = function(){
         $state.go('page.wiki.book.index', {
             book: $scope.selection.book,
-            language: $scope.selection.language
+            language: $scope.selection.language || 'english'
         })
     };
 
@@ -27,7 +27,7 @@ function WikiController($meteor, $scope, WikiStateService, $state) {
     $scope.setPage = function(){
         $state.go('page.wiki.book.page', {
             book: $scope.selection.book,
-            language: $scope.selection.language,
+            language: $scope.selection.language || 'english',
             page: $scope.selection.page
         })
     };
