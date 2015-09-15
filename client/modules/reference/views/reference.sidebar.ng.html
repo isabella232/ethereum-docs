@@ -1,0 +1,9 @@
+<div class="ui-select-container ui-select-bootstrap dropdown ng-valid open" theme="bootstrap">
+    <ul class="ui-select-choices ui-select-choices-content ui-select-dropdown dropdown-menu ui-compound-sidebar">
+        <li class="ui-select-choices-group">
+            <div class="ui-select-choices-row" ng-class="{active: selection.compound == compound.slug}" ng-repeat="compound in compounds | filter:sidebarClassFilter">
+                <a ui-sref="page.reference.project.compound({version:compound._version,project:compound._project,compound:compound.slug})" class="ui-select-choices-row-inner"><span>{{compound.summary.name}}</span></a>
+            </div>
+        </li>
+    </ul>
+</div>

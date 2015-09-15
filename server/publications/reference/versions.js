@@ -2,7 +2,11 @@ Meteor.publish('docs:reference:versions', function(){
 
     var query = {};
 
-    var options = {};
+    var options = {
+        fields: {
+            body: 0
+        }
+    };
 
     return DocsReferenceVersions.find(query, options);
 
