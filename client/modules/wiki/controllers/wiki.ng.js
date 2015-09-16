@@ -7,6 +7,15 @@ function WikiController($meteor, $scope, WikiStateService, $state) {
     $scope.books = $meteor.collection(DocsWikiBooks);
     $scope.pages = $meteor.collection(DocsWikiPages);
 
+    $scope.languages = [
+        {
+            slug: 'english'
+        },
+        {
+            slug: 'japanese'
+        }
+    ];
+
     // Detect selection on initial page load
     $scope.selection = WikiStateService.getSelection();
 
@@ -30,6 +39,15 @@ function WikiController($meteor, $scope, WikiStateService, $state) {
             language: $scope.selection.language || 'english',
             page: $scope.selection.page
         })
+    };
+
+    // Select language
+    $scope.setLanguage = function(){
+        if ($scope.selection.page) {
+            $scope.setPage();
+        } else {
+            $scope.setBook();
+        }
     };
 
 }

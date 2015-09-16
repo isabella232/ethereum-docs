@@ -1,9 +1,17 @@
 <div class="row ethereum-dynamic-breadcrumbs">
-    <div class="col-md-8">
+    <div class="col-md-4">
         <ui-select ng-model="selection.book" theme="bootstrap" on-select="setBook()" style="margin-bottom:30px;">
             <ui-select-match placeholder="Select book">{{$select.selected.slug}}</ui-select-match>
             <ui-select-choices repeat="book.slug as book in books">
                 <span ng-bind-html="book.slug | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-md-4">
+        <ui-select ng-model="selection.language" theme="bootstrap" on-select="setLanguage()" ng-disabled="!selection.book" style="margin-bottom:30px;">
+            <ui-select-match placeholder="Select book">{{$select.selected.slug}}</ui-select-match>
+            <ui-select-choices repeat="language.slug as language in languages">
+                <span ng-bind-html="language.slug | highlight: $select.search"></span>
             </ui-select-choices>
         </ui-select>
     </div>

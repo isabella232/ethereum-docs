@@ -15,8 +15,8 @@ function ethereumWikiTranslation($compile, $templateCache, $state) {
             if (scope.page[scope.language]){
                 scope.translation = scope.page[scope.language]
             } else {
+                scope.message = 'Page available only in English';
                 scope.translation = scope.page['english'];
-                console.log('page available only in English')
             }
 
             // If there is translation or English original
