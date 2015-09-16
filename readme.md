@@ -3,7 +3,6 @@
 ## Installation
 
 - Clone the repository
-- Install node packages: `npm install`
 - Run meteor: `meteor`
 
 ## Deployment
