@@ -1,0 +1,7 @@
+<h2>Included by</h2>
+<ul>
+    <li ng-repeat="include in includedBy" ng-switch on="include.isLocal">
+        <span ng-switch-when="yes"><a href="" ng-click="ref(include.refid)">{{include.name}}</a></span>
+        <span ng-switch-when="no">{{include.name}}</span>
+    </li>
+</ul>

@@ -1,10 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
 // Bootstrap settings
-@import 'variables';
+@import '_variables';
 
 // Bootstrap includes
 @import '.meteor/local/build/programs/server/assets/packages/reywood_bootstrap3-sass/_bootstrap';
 
-@import 'keyframes';
-@import 'common';
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
-@import 'reference';
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  overflow: hidden;
+}
+
+body {
+  overflow-y: hidden;
+  position: relative;
+}
+
+.animated {
+  -webkit-animation: fadein 0.5s;
+  -moz-animation: fadein 0.5s;
+  -ms-animation: fadein 0.5s;
+  -o-animation: fadein 0.5s;
+  animation: fadein 0.5s;
+}
+
+@import '_keyframes';
+@import '_scrollbars';
+
+@import '_landing';
+
+@import '_page';
+@import '_navbar';
+@import '_reference';
+@import '_wiki';
+

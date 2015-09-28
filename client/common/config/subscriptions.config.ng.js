@@ -167,6 +167,8 @@ function runState($rootScope, SubscriptionsService) {
 
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
+        $(".fullscreen").animate({ scrollTop: 0 }, 0);
+
         $rootScope.$broadcast("state:updated");
 
     });

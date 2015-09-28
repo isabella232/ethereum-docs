@@ -8,14 +8,14 @@ function ReferenceSidebarController($scope) {
 
         switch (item.parser){
 
+            case 'jsdoc':
+                return (item.kind == 'function' || item.summary.kind == 'typedef');
+
             case 'marked':
-                return (item.summary.kind == 'page');
+                return (item.kind == 'page');
 
             case 'doxygen':
-                return (item.summary.kind == 'class' /*|| item.summary.kind == 'struct'*/);
-
-            case 'jsdoc':
-                return (item.summary.kind == 'function' || item.summary.kind == 'typedef');
+                return (item.kind == 'class' /*|| item.summary.kind == 'struct'*/);
 
         }
 

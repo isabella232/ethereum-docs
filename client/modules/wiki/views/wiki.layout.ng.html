@@ -1,5 +1,5 @@
-<div class="row ethereum-dynamic-breadcrumbs">
-    <div class="col-md-4">
+<div class="row ethdocs-page">
+    <div class="col-sm-4 ethdocs-page-dropdown">
         <ui-select ng-model="selection.book" theme="bootstrap" on-select="setBook()" style="margin-bottom:30px;">
             <ui-select-match placeholder="Select book">{{$select.selected.slug}}</ui-select-match>
             <ui-select-choices repeat="book.slug as book in books">
@@ -7,7 +7,7 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-4 ethdocs-page-dropdown">
         <ui-select ng-model="selection.language" theme="bootstrap" on-select="setLanguage()" ng-disabled="!selection.book" style="margin-bottom:30px;">
             <ui-select-match placeholder="Select book">{{$select.selected.slug}}</ui-select-match>
             <ui-select-choices repeat="language.slug as language in languages">
@@ -15,11 +15,15 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-4 pull-right" ng-hide="!selection.book">
-        <blaze-template name="spinner" ng-hide="pages.length"></blaze-template>
-        <ethereum-wiki-sidebar pages="pages" selection="selection" ng-if="pages.length"></ethereum-wiki-sidebar>
+    <div class="col-md-4 hidden-sm hidden-xs ethdocs-page-sidebar pull-right" ng-hide="!selection.book">
+        <div class="sidebar-inner">
+            <blaze-template name="spinner" ng-hide="pages.length"></blaze-template>
+            <ethereum-wiki-sidebar pages="pages" selection="selection" ng-if="pages.length"></ethereum-wiki-sidebar>
+        </div>
     </div>
-    <div class="col-md-8">
-        <div ui-view="" style="overflow: hidden;"></div>
+    <div class="col-md-8 col-sm-12 ethdocs-page-content">
+        <div class="content-inner">
+            <div ui-view=""></div>
+        </div>
     </div>
 </div>

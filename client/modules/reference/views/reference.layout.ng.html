@@ -1,9 +1,5 @@
-<div class="row ethereum-header-graphic">
-    <img src="/images/reference.png" class="img-responsive">
-</div>
-
-<div class="row ethereum-dynamic-breadcrumbs">
-    <div class="col-md-4">
+<div class="row ethdocs-page">
+    <div class="col-sm-4 ethdocs-page-dropdown">
         <ui-select ng-model="selection.version" theme="bootstrap" on-select="setVersion()">
             <ui-select-match placeholder="Select version">{{$select.selected.slug}}</ui-select-match>
             <ui-select-choices repeat="version.slug as version in versions">
@@ -11,7 +7,7 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-4 ethdocs-page-dropdown">
         <ui-select ng-model="selection.project" theme="bootstrap" on-select="setProject()" ng-disabled="!selection.version || !projects.length">
             <ui-select-match placeholder="Select project">{{$select.selected.slug}}</ui-select-match>
             <ui-select-choices repeat="project.slug as project in projects">
@@ -19,11 +15,15 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-4 pull-right" ng-hide="!selection.project">
-        <blaze-template name="spinner" ng-hide="compounds.length"></blaze-template>
-        <ethereum-reference-sidebar compounds="compounds" selection="selection" ng-if="compounds.length"></ethereum-reference-sidebar>
+    <div class="col-md-4 hidden-sm hidden-xs ethdocs-page-sidebar pull-right" ng-hide="!selection.project">
+        <div class="sidebar-inner">
+            <blaze-template name="spinner" ng-hide="compounds.length"></blaze-template>
+            <ethereum-reference-sidebar compounds="compounds" selection="selection" ng-if="compounds.length"></ethereum-reference-sidebar>
+        </div>
     </div>
-    <div class="col-md-8">
-        <div ui-view=""></div>
+    <div class="col-md-8 col-sm-12 ethdocs-page-content">
+        <div class="content-inner">
+            <div ui-view=""></div>
+        </div>
     </div>
 </div>

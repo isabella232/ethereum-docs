@@ -1,3 +1,5 @@
-<div class="alert alert-warning" role="message" ng-show="message">{{message}}</div>
+<div class="alert alert-warning" role="message" ng-if="message">
+    Page available only in English. You can <a href="{{url}}">help us</a> translate it in {{language}}.
+</div>
 
 <compound body="translation" parser="'marked'" ng-if="translation"></compound>

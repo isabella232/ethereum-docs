@@ -14,11 +14,22 @@ function ethereumWikiSidebar($compile, $templateCache, $state) {
 
             var defaultLanguage = 'english';
 
+            console.log(scope.pages)
+
             scope.links = [];
 
             scope.pages.forEach(function(page){
 
-                var name, language;
+                if (page.summary['english']) {
+
+                    scope.links.push({
+                        slug: page.slug,
+                        name: page.summary['english'].name
+                    });
+
+                }
+
+                /*var name, language;
 
                 if (page.summary[scope.selection.language]) {
                     name = page.summary[scope.selection.language].name;
@@ -35,7 +46,7 @@ function ethereumWikiSidebar($compile, $templateCache, $state) {
                         name: name,
                         language: language
                     });
-                }
+                }*/
 
             });
 

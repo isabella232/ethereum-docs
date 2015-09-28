@@ -1,0 +1,9 @@
+<h2>Inner</h2>
+<div ng-repeat="(groupName, group) in inner">
+    <h3>{{groupName}}</h3>
+    <ul>
+        <li ng-repeat="item in group">
+            {{item}}
+        </li>
+    </ul>
+</div>

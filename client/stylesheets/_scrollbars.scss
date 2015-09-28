@@ -1,0 +1,15 @@
+::-webkit-scrollbar
+{
+  width: 5px;  /* for vertical scrollbars */
+  height: 5px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #ccc;
+}
