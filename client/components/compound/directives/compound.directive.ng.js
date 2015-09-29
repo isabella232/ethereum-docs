@@ -2,7 +2,7 @@ angular
     .module('ethdev')
     .directive('docsCompound', docsCompound);
 
-function docsCompound($compile, $templateCache, $state, DoxygenCompoundService) {
+function docsCompound($compile, $templateCache, $state, JsdocCompoundService, DoxygenCompoundService) {
 
     return {
         restrict: 'E',
@@ -35,23 +35,41 @@ function docsCompound($compile, $templateCache, $state, DoxygenCompoundService) 
 
     function jsdocCompound(scope){
 
-        switch (scope.kind) {
+        var templates = {
+            "longname": JsdocCompoundService.name,
+            "description": JsdocCompoundService.description,
+            "params": JsdocCompoundService.params,
+            "returns": JsdocCompoundService.returns
+        };
 
-            default:
-                console.log('No template for: jsdoc ' + scope.kind);
+        var data = sortKeys(scope.body, Object.keys(templates));
 
-        }
+        var $sections = $('<div></div>');
+
+        $sections.addClass('docs-compound-jsdoc');
+
+        _.forEach(data, function(value, key) {
+
+            var $section = $('<section></section>');
+            $section.addClass('docs-jsdoc-' + key);
+
+            var html = (templates[key] || function(){
+                console.log('No template for: jsdoc ' + key);
+            })(scope, value);
+
+            $section.append(html);
+
+            $sections.append($section);
+
+        });
+
+        return $sections;
 
     }
 
     function markedCompound(scope){
 
-        switch (scope.kind) {
-
-            default:
-                console.log('No template for: marked ' + scope.kind);
-
-        }
+        return scope.body.content;
 
     }
 

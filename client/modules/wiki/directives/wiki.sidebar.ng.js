@@ -14,8 +14,6 @@ function ethereumWikiSidebar($compile, $templateCache, $state) {
 
             var defaultLanguage = 'english';
 
-            console.log(scope.pages)
-
             scope.links = [];
 
             scope.pages.forEach(function(page){

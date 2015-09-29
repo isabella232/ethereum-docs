@@ -1,0 +1,14 @@
+<h2>Params</h2>
+<table class="table table-bordered">
+    <tr ng-repeat="param in params">
+        <td>
+            <span ng-repeat="type in param.type">{{type[0]}}</span>
+        </td>
+        <td>
+            <span>{{param.name}}</span>
+        </td>
+        <td>
+            <span>{{param.description}}</span>
+        </td>
+    </tr>
+</table>
