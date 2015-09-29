@@ -1,2 +1,8 @@
 <h2>Params</h2>
-<div>{{params}}</div>
+<table class="table table-bordered">
+    <tr ng-repeat="param in params">
+        <td>
+            <span ng-repeat="type in param.types">{{type.name}}</span>
+        </td>
+    </tr>
+</table>

@@ -1,7 +1,9 @@
 <h2>Includes</h2>
-<ul>
-    <li ng-repeat="include in includes" ng-switch on="include.isLocal">
-        <span ng-switch-when="yes"><a href="" ng-click="ref(include.refid)">{{include.name}}</a></span>
-        <span ng-switch-when="no">{{include.name}}</span>
-    </li>
-</ul>
+<table class="table table-bordered">
+    <tr ng-repeat="include in includes">
+        <td ng-switch on="include.isLocal">
+            <span ng-switch-when="yes"><a href="" ng-click="ref(include.refid)">{{include.name}}</a></span>
+            <span ng-switch-when="no">{{include.name}}</span>
+        </td>
+    </tr>
+</table>

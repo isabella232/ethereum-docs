@@ -60,14 +60,14 @@ function docsCompound($compile, $templateCache, $state, DoxygenCompoundService) 
         var templates = {
             "name": DoxygenCompoundService.name,
             "description": DoxygenCompoundService.description,
+            "location": DoxygenCompoundService.location,
             "includes": DoxygenCompoundService.includes,
             "includedby": DoxygenCompoundService.includedBy,
-            "inner": DoxygenCompoundService.inner,
+            "templateparams": DoxygenCompoundService.templateParams,
             "listofallmembers": DoxygenCompoundService.listOfAllMembers,
+            "inner": DoxygenCompoundService.inner,
             "references": DoxygenCompoundService.references,
             "sections": DoxygenCompoundService.sections,
-            "location": DoxygenCompoundService.location,
-            "templateparams": DoxygenCompoundService.templateParams,
             "programlisting": DoxygenCompoundService.programListing
         };
 

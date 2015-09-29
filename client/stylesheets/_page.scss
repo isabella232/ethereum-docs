@@ -103,11 +103,21 @@ $page-dropdown-height: 36px;
 
   & > .content-inner {
     height: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     overflow-wrap: break-word;
-    //padding-right: $padding-large-horizontal;
-    padding-bottom: $padding-large-vertical * 4;
+    padding-right: $padding-large-horizontal;
+    //padding-bottom: $padding-large-vertical * 4;
+
+    h1 {
+      margin: 0 0 $padding-large-vertical 0;
+    }
+    h2 {
+      margin: $padding-large-vertical * 3 0 $padding-large-vertical 0;
+    }
+    h3 {
+      margin: $padding-large-vertical * 3 0 $padding-large-vertical 0;
+    }
   }
 
   @media (max-width: $screen-xs-max) {
