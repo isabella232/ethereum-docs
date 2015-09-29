@@ -20,8 +20,6 @@ function ethereumWikiTranslation($compile, $templateCache, $state) {
                 scope.translation = scope.page['english'];
             }
 
-            scope.language = scope.language.charAt(0).toUpperCase() + scope.language.slice(1);
-
             // If there is translation or English original
             if (scope.translation){
                 element.append($compile(
