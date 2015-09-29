@@ -2,19 +2,24 @@ angular
     .module('ethdev')
     .controller('WikiController', WikiController);
 
-function WikiController($meteor, $scope, WikiStateService, $state) {
+function WikiController($meteor, $scope, WikiStateService, $state, $timeout) {
 
     $scope.books = $meteor.collection(DocsWikiBooks);
     $scope.pages = $meteor.collection(DocsWikiPages);
 
-    $scope.languages = [
-        {
-            slug: 'english'
-        },
-        {
-            slug: 'japanese'
-        }
-    ];
+    $timeout(function(){
+
+        $scope.languages = [];
+
+        $scope.pages.forEach(function(page){
+
+            $scope.languages = $scope.languages.concat(Object.keys(page.summary).filter(function (item) {
+                return $scope.languages.indexOf(item) < 0;
+            }));
+
+        });
+
+    }, 500);
 
     // Detect selection on initial page load
     $scope.selection = WikiStateService.getSelection();

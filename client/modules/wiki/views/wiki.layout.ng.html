@@ -9,9 +9,9 @@
     </div>
     <div class="col-sm-4 ethdocs-page-dropdown">
         <ui-select ng-model="selection.language" theme="bootstrap" on-select="setLanguage()" ng-disabled="!selection.book" style="margin-bottom:30px;">
-            <ui-select-match placeholder="Select book">{{$select.selected.slug}}</ui-select-match>
-            <ui-select-choices repeat="language.slug as language in languages">
-                <span ng-bind-html="language.slug | highlight: $select.search"></span>
+            <ui-select-match placeholder="Select book">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="language in languages">
+                <span style="text-transform: capitalize;" ng-bind-html="language | highlight: $select.search"></span>
             </ui-select-choices>
         </ui-select>
     </div>
