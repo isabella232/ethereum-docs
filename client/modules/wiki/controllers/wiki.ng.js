@@ -7,7 +7,7 @@ function WikiController($meteor, $scope, WikiStateService, $state, $timeout) {
     $scope.books = $meteor.collection(DocsWikiBooks);
     $scope.pages = $meteor.collection(DocsWikiPages);
 
-    $timeout(function(){
+    $scope.$watch('pages.length', function() {
 
         $scope.languages = [];
 
@@ -19,7 +19,7 @@ function WikiController($meteor, $scope, WikiStateService, $state, $timeout) {
 
         });
 
-    }, 500);
+    });
 
     // Detect selection on initial page load
     $scope.selection = WikiStateService.getSelection();
