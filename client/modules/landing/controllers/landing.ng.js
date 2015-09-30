@@ -57,4 +57,16 @@ function LandingController($meteor, $scope, $state, $timeout) {
 
     /////////////////////////////////
 
+    function resize()
+    {
+        var heights = window.innerHeight;
+        document.getElementById("landing-graphic").style.height = heights + "px";
+        document.getElementById("landing-reference").style.minHeight = heights/2 + "px";
+        document.getElementById("landing-wiki").style.minHeight = heights/2 + "px";
+    }
+    resize();
+    window.onresize = function() {
+        resize();
+    };
+
 }

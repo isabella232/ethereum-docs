@@ -1,6 +1,92 @@
 // Bootstrap settings
 @import '_variables';
 
+.ethdocs-landing {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  & > .ethdocs-landing-inner {
+    height: 100%;
+    & > .ethdocs-landing-graphic {
+      float: left;
+      width: 100%;
+      background: url('/images/landing/keyboard.png') no-repeat bottom center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    & > .ethdocs-landing-reference, & > .ethdocs-landing-wiki {
+      padding: $padding-large-vertical * 2 $padding-large-horizontal * 2;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      overflow-y: scroll;
+      & > .ethdocs-landing-reference, & > .ethdocs-landing-wiki {
+        float: left;
+        width: 100%;
+        background: #444;
+      }
+      & > .ethdocs-landing-reference {
+        border-bottom: 1px solid #333;
+      }
+      & > .ethdocs-landing-wiki {
+        border-top: 1px solid #555;
+      }
+    }
+
+    @media (min-width: $screen-sm-min) {
+      & > .ethdocs-landing-reference, & > .ethdocs-landing-wiki {
+        position: absolute;
+        top: $padding-large-vertical * 2;
+        bottom: $padding-large-vertical * 2;
+        overflow-y: auto;
+      }
+      & > .ethdocs-landing-reference {
+        left: $padding-large-horizontal * 2;
+      }
+      & > .ethdocs-landing-wiki {
+        right: $padding-large-horizontal * 2;
+        text-align: right;
+      }
+    }
+
+    & > h1 {
+      margin: 0;
+      padding: 0;
+      color: #666;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      & > li {
+        & > a {
+          color: #aaa;
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .ethereum-landing {
   position: absolute;
   left: 0;
