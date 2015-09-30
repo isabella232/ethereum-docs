@@ -15,11 +15,8 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-4 hidden-sm hidden-xs ethdocs-page-sidebar pull-right" ng-hide="!selection.project">
-        <div class="sidebar-inner">
-            <blaze-template name="spinner" ng-hide="compounds.length"></blaze-template>
-            <ethereum-reference-sidebar compounds="compounds" selection="selection" ng-if="compounds.length"></ethereum-reference-sidebar>
-        </div>
+    <div class="col-xs-12 col-sm-4 ethdocs-page-sidebar pull-right">
+        <ethereum-reference-sidebar compounds="compounds" selection="selection" ng-if="compounds.length"></ethereum-reference-sidebar>
     </div>
     <div class="col-md-8 col-sm-12 ethdocs-page-content">
         <div class="content-inner">

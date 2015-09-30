@@ -2,7 +2,16 @@ angular
     .module('ethdev')
     .controller('ReferenceSidebarController', ReferenceSidebarController);
 
-function ReferenceSidebarController($scope) {
+function ReferenceSidebarController($scope, $state) {
+
+    // Select compound
+    $scope.setCompound = function(){
+        $state.go('page.reference.project.compound', {
+            version: $scope.selection.version,
+            project: $scope.selection.project,
+            compound: $scope.selection.compound
+        })
+    };
 
     $scope.sidebarClassFilter = function(item){
 

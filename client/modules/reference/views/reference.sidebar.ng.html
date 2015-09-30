@@ -1,12 +1,27 @@
-<div class="sidebar-container">
-    <ul>
-        <li>
-            <div class="ui-select-choices-row" ng-class="{active: selection.compound == compound.slug}"
-                 ng-repeat="compound in compounds | filter:sidebarClassFilter">
-                <a ui-sref="page.reference.project.compound({version:compound._version,project:compound._project,compound:compound.slug})"
-                   class="ui-select-choices-row-inner"><span>{{compound.summary.name}}</span>
-                </a>
-            </div>
-        </li>
-    </ul>
+
+
+<div class="hidden-md hidden-lg">
+    <ui-select ng-model="selection.compound" theme="bootstrap" on-select="setCompound()">
+        <ui-select-match placeholder="Select compound">{{$select.selected.summary.name}}</ui-select-match>
+        <ui-select-choices repeat="compound.slug as compound in compounds">
+            <span ng-bind-html="compound.summary.name | highlight: $select.search"></span>
+        </ui-select-choices>
+    </ui-select>
 </div>
+
+<div class="sidebar-inner hidden-xs hidden-sm">
+    <blaze-template name="spinner" ng-hide="selection.project"></blaze-template>
+    <div class="sidebar-container">
+        <ul>
+            <li>
+                <div class="ui-select-choices-row" ng-class="{active: selection.compound == compound.slug}"
+                     ng-repeat="compound in compounds | filter:sidebarClassFilter">
+                    <a ui-sref="page.reference.project.compound({version:compound._version,project:compound._project,compound:compound.slug})"
+                       class="ui-select-choices-row-inner"><span>{{compound.summary.name}}</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
