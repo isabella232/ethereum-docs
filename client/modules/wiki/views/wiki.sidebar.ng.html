@@ -1,12 +1,26 @@
-<div class="sidebar-container">
-    <ul>
-        <li>
-            <div class="ui-select-choices-row" ng-class="{active: selection.page == link.slug}"
-                 ng-repeat="link in links">
-                <a ui-sref="page.wiki.book.page({book:selection.book,language:selection.language,page:link.slug})"
-                   class="ui-select-choices-row-inner"><span>{{link.name}}</span>
-                </a>
-            </div>
-        </li>
-    </ul>
+<div class="hidden-md hidden-lg">
+    <ui-select ng-model="selection.page" theme="bootstrap" on-select="setPage()">
+        <ui-select-match placeholder="Select page">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices group-by="'category'" repeat="page.slug as page in groupedPages">
+            <span ng-bind-html="page.name | highlight: $select.search"></span>
+        </ui-select-choices>
+    </ui-select>
 </div>
+
+<div class="sidebar-inner hidden-xs hidden-sm">
+    <blaze-template name="spinner" ng-hide="selection.book"></blaze-template>
+    <div class="sidebar-container">
+        <ul>
+            <li ng-repeat="category in categories">
+                <h3>{{category.name}}</h3>
+                <div class="ui-select-choices-row" ng-class="{active: selection.page == page.slug}"
+                     ng-repeat="page in category.pages">
+                    <a ui-sref="page.wiki.book.page({book:selection.book,language:selection.language,page:page.slug})"
+                       class="ui-select-choices-row-inner"><span>{{page.name}}</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+

@@ -7,6 +7,24 @@ function WikiController($meteor, $scope, WikiStateService, $state, $timeout) {
     $scope.books = $meteor.collection(DocsWikiBooks);
     $scope.pages = $meteor.collection(DocsWikiPages);
 
+    $scope.fakepages = [
+        {
+            name: 'One',
+            slug: 'one',
+            category: 'Foo'
+        },
+        {
+            name: 'Two',
+            slug: 'two',
+            category: 'Foo'
+        },
+        {
+            name: 'Three',
+            slug: 'three',
+            category: 'Bar'
+        }
+    ];
+
     $scope.$watch('pages.length', function() {
 
         $scope.languages = [];

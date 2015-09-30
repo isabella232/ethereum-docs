@@ -2,7 +2,7 @@ angular
     .module('ethdev')
     .directive('docsCompound', docsCompound);
 
-function docsCompound($compile, $templateCache, $state, JsdocCompoundService, DoxygenCompoundService) {
+function docsCompound(JsdocCompoundService, DoxygenCompoundService) {
 
     return {
         restrict: 'E',
@@ -69,7 +69,7 @@ function docsCompound($compile, $templateCache, $state, JsdocCompoundService, Do
 
     function markedCompound(scope){
 
-        return scope.body.content;
+        return scope.body.html;
 
     }
 
@@ -135,42 +135,3 @@ function docsCompound($compile, $templateCache, $state, JsdocCompoundService, Do
     }
 
 }
-
-
-
-
-
-
-/*
- case 'name':
- case 'description':
- case 'includes':
- case 'includedby':
-
- case 'innerdir':
- case 'innerfile':
- case 'innerclass':
- case 'innernamespace':
- case 'innerpage':
- case 'innergroup':
-
- case 'listofallmembers':
-
- case 'basecompoundref':
- case 'derivedcompoundref':
-
- case 'sections':
-
- case 'location':
-
- case 'templateparamlist':
-
- case 'programlisting':
-
- case 'incdepgraph':
- case 'invincdepgraph':
- case 'briefdescription':
- case 'detaileddescription':
- case 'inheritancegraph':
- case 'collaborationgraph':
- */

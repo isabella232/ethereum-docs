@@ -15,11 +15,8 @@
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-4 hidden-sm hidden-xs ethdocs-page-sidebar pull-right" ng-hide="!selection.book">
-        <div class="sidebar-inner">
-            <blaze-template name="spinner" ng-hide="pages.length"></blaze-template>
-            <ethereum-wiki-sidebar pages="pages" selection="selection" ng-if="pages.length"></ethereum-wiki-sidebar>
-        </div>
+    <div class="col-xs-12 col-sm-4 ethdocs-page-sidebar pull-right">
+        <ethereum-wiki-sidebar pages="pages" selection="selection" ng-if="pages.length"></ethereum-wiki-sidebar>
     </div>
     <div class="col-md-8 col-sm-12 ethdocs-page-content">
         <div class="content-inner">

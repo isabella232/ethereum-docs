@@ -10,47 +10,73 @@ function ethereumWikiSidebar($compile, $templateCache, $state) {
             pages: '=',
             selection: '='
         },
+        controller: function($scope, $state) {
+
+            // Select book page
+            $scope.setPage = function(){
+                $state.go('page.wiki.book.page', {
+                    book: $scope.selection.book,
+                    language: $scope.selection.language || 'english',
+                    page: $scope.selection.page
+                })
+            };
+
+        },
         link: function (scope, element, attrs) {
 
-            var defaultLanguage = 'english';
+            scope.$watch('selection.language', function(){
 
-            scope.links = [];
+                scope.categories = {};
+                scope.groupedPages = [];
 
-            scope.pages.forEach(function(page){
+                scope.pages.forEach(function(page){
 
-                if (page.summary['english']) {
+                    if (page.summary[scope.selection.language]) {
 
-                    scope.links.push({
-                        slug: page.slug,
-                        name: page.summary['english'].name
-                    });
+                        var pagename = page.slug;
+                        var category = 'Uncategorized';
 
-                }
+                        if (page.summary[scope.selection.language].meta) {
 
-                /*var name, language;
+                            if (page.summary[scope.selection.language].meta.name) {
+                                pagename = page.summary[scope.selection.language].meta.name;
+                            }
 
-                if (page.summary[scope.selection.language]) {
-                    name = page.summary[scope.selection.language].name;
-                    language = scope.selection.language;
-                } else if (page.summary[defaultLanguage]) {
-                    name = page.summary[defaultLanguage].name;
-                    language = defaultLanguage;
-                }
+                            if (page.summary[scope.selection.language].meta.category) {
+                                category = page.summary[scope.selection.language].meta.category;
+                            }
 
-                // If there is translation or English original
-                if (name) {
-                    scope.links.push({
-                        slug: page.slug,
-                        name: name,
-                        language: language
-                    });
-                }*/
+                        }
+
+                        if (!scope.categories[category]) {
+                            scope.categories[category] = {
+                                name: category,
+                                pages: []
+                            };
+                        }
+
+                        scope.categories[category].pages.push({
+                            slug: page.slug,
+                            name: pagename
+                        });
+
+                        scope.groupedPages.push({
+                            slug: page.slug,
+                            name: pagename,
+                            category: category
+                        });
+
+                    }
+
+                });
+
+                element.html($compile(
+                    $templateCache.get('client/modules/wiki/views/wiki.sidebar.ng.html')
+                )(scope));
 
             });
 
-            element.append($compile(
-                $templateCache.get('client/modules/wiki/views/wiki.sidebar.ng.html')
-            )(scope));
+
 
         }
     };
