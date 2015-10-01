@@ -9,12 +9,12 @@
 
 <div class="sidebar-inner hidden-xs hidden-sm">
     <blaze-template name="spinner" ng-hide="selection.book"></blaze-template>
-    <div class="sidebar-container">
+    <div class="sidebar-container" ng-if="groupedPages">
         <ul>
-            <li ng-repeat="category in categories">
-                <h3>{{category.name}}</h3>
+            <li ng-repeat="(key, value) in groupedPages | groupBy: 'category'">
+                <h3>{{key}}</h3>
                 <div class="ui-select-choices-row" ng-class="{active: selection.page == page.slug}"
-                     ng-repeat="page in category.pages">
+                     ng-repeat="page in value">
                     <a ui-sref="page.wiki.book.page({book:selection.book,language:selection.language,page:page.slug})"
                        class="ui-select-choices-row-inner"><span>{{page.name}}</span>
                     </a>

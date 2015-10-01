@@ -26,41 +26,48 @@ function ethereumWikiSidebar($compile, $templateCache, $state) {
 
             scope.$watch('selection.language', function(){
 
-                scope.categories = {};
-                scope.groupedPages = [];
+                scope.groupedPages = getPages(scope.selection.language);
+
+                element.html($compile(
+                    $templateCache.get('client/modules/wiki/views/wiki.sidebar.ng.html')
+                )(scope));
+
+            });
+
+            scope.$watch('pages.length', function(){
+
+                scope.groupedPages = getPages(scope.selection.language);
+
+                element.html($compile(
+                    $templateCache.get('client/modules/wiki/views/wiki.sidebar.ng.html')
+                )(scope));
+
+            });
+
+            function getPages(language) {
+
+                var groupedPages = [];
 
                 scope.pages.forEach(function(page){
 
-                    if (page.summary[scope.selection.language]) {
+                    if (page.summary[language]) {
 
                         var pagename = page.slug;
                         var category = 'Uncategorized';
 
-                        if (page.summary[scope.selection.language].meta) {
+                        if (page.summary[language].meta) {
 
-                            if (page.summary[scope.selection.language].meta.name) {
-                                pagename = page.summary[scope.selection.language].meta.name;
+                            if (page.summary[language].meta.name) {
+                                pagename = page.summary[language].meta.name;
                             }
 
-                            if (page.summary[scope.selection.language].meta.category) {
-                                category = page.summary[scope.selection.language].meta.category;
+                            if (page.summary[language].meta.category) {
+                                category = page.summary[language].meta.category;
                             }
 
                         }
 
-                        if (!scope.categories[category]) {
-                            scope.categories[category] = {
-                                name: category,
-                                pages: []
-                            };
-                        }
-
-                        scope.categories[category].pages.push({
-                            slug: page.slug,
-                            name: pagename
-                        });
-
-                        scope.groupedPages.push({
+                        groupedPages.push({
                             slug: page.slug,
                             name: pagename,
                             category: category
@@ -70,13 +77,9 @@ function ethereumWikiSidebar($compile, $templateCache, $state) {
 
                 });
 
-                element.html($compile(
-                    $templateCache.get('client/modules/wiki/views/wiki.sidebar.ng.html')
-                )(scope));
+                return groupedPages;
 
-            });
-
-
+            }
 
         }
     };
