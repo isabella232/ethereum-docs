@@ -2,19 +2,19 @@
     <div class="ethdocs-landing-inner">
         <div class="ethdocs-landing-graphic" id="landing-graphic">
         </div>
-        <div class="ethdocs-landing-reference" id="landing-reference">
-            <h1>Reference</h1>
-            <ul>
-                <li ng-repeat="project in projects">
-                    <a ui-sref="page.reference.project.index({version:project._version,project:project.slug})">{{project.summary.name}}</a>
-                </li>
-            </ul>
-        </div>
         <div class="ethdocs-landing-wiki" id="landing-wiki">
             <h1>Wiki</h1>
             <ul>
                 <li ng-repeat="book in books">
                     <a ui-sref="page.wiki.book.index({book:book.slug,language:'english'})">{{book.summary.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="ethdocs-landing-reference" id="landing-reference">
+            <h1>Reference</h1>
+            <ul>
+                <li ng-repeat="project in projects">
+                    <a ui-sref="page.reference.project.index({version:project._version,project:project.slug})">{{project.summary.name}}</a>
                 </li>
             </ul>
         </div>

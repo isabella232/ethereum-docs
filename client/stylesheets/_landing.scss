@@ -29,10 +29,10 @@
         width: 100%;
         background: #444;
       }
-      & > .ethdocs-landing-reference {
+      & > .ethdocs-landing-wiki {
         border-bottom: 1px solid #333;
       }
-      & > .ethdocs-landing-wiki {
+      & > .ethdocs-landing-reference {
         border-top: 1px solid #555;
       }
     }
@@ -44,10 +44,10 @@
         bottom: $padding-large-vertical * 2;
         overflow-y: auto;
       }
-      & > .ethdocs-landing-reference {
+      & > .ethdocs-landing-wiki {
         left: $padding-large-horizontal * 2;
       }
-      & > .ethdocs-landing-wiki {
+      & > .ethdocs-landing-reference {
         right: $padding-large-horizontal * 2;
         text-align: right;
       }
