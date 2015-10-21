@@ -2,7 +2,7 @@ angular
     .module('ethdev')
     .controller('CompoundController', CompoundController);
 
-function CompoundController($meteor, $scope, $state) {
+function CompoundController($meteor, $scope, $state, $uiViewScroll, $window) {
 
     $scope.ref = function(compound){
         $state.go('page.reference.project.compound', {
@@ -11,5 +11,16 @@ function CompoundController($meteor, $scope, $state) {
             compound: compound
         });
     };
+
+    $scope.openLink = function(link) {
+
+        if (link.substring(0, 1) == "#") {
+            var elem = angular.element(document.querySelector(link));
+            $uiViewScroll(elem);
+        } else {
+            $window.location.href = link;
+        }
+
+    }
 
 }

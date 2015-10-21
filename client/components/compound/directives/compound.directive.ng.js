@@ -2,7 +2,7 @@ angular
     .module('ethdev')
     .directive('docsCompound', docsCompound);
 
-function docsCompound(JsdocCompoundService, DoxygenCompoundService) {
+function docsCompound(JsdocCompoundService, DoxygenCompoundService, MarkedCompoundService) {
 
     return {
         restrict: 'E',
@@ -69,7 +69,7 @@ function docsCompound(JsdocCompoundService, DoxygenCompoundService) {
 
     function markedCompound(scope){
 
-        return scope.body.html;
+        return MarkedCompoundService.page(scope);
 
     }
 

@@ -2,7 +2,7 @@ angular
     .module('ethdev')
     .directive('ethereumWikiTranslation', ethereumWikiTranslation);
 
-function ethereumWikiTranslation($compile, $templateCache, $state) {
+function ethereumWikiTranslation($compile, $templateCache) {
 
     return {
         restrict: 'E',
@@ -14,7 +14,7 @@ function ethereumWikiTranslation($compile, $templateCache, $state) {
         link: function (scope, element, attrs) {
 
             if (scope.page[scope.language]){
-                scope.translation = scope.page[scope.language]
+                scope.translation = scope.page[scope.language];
             } else {
                 scope.message = true;
                 scope.translation = scope.page['english'];
