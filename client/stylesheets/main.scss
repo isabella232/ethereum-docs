@@ -44,3 +44,11 @@ body {
 @import '_reference';
 @import '_wiki';
 
+#alpha-tag{
+  height: 0;
+  font-size: 18px;
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  left: 65px;
+}
