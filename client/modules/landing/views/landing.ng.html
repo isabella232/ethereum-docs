@@ -10,9 +10,18 @@
                     <a ui-sref="page.wiki.book.index({book:book.slug,language:'english'})">{{book.summary.name}}</a>
                 </li>
             </ul>
+            <h1>Useful resources</h1>
+            <ul>
+              <li>
+                <a href="https://godoc.org/github.com/ethereum/go-ethereum">Go docs</a>
+              </li>
+              <li>
+                <a href="ethereum.github.io/solidity">Solidity website</a>
+              </li>
+            </ul>
         </div>
         <div class="ethdocs-landing-reference" id="landing-reference">
-            <h1>Reference</h1>
+            <h1>Source reference</h1>
             <ul>
                 <li ng-repeat="project in projects">
                     <a ui-sref="page.reference.project.index({version:project._version,project:project.slug})">{{project.summary.name}}</a>
